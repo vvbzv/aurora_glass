@@ -3495,12 +3495,12 @@ body.theme-dark .modal.mod-community-theme .modal-close-button svg {
 /* END COMMUNITY THEME BROWSER COMPONENT MATCH                               */
 /* ========================================================================== */
 /* ========================================================================== */
-/* LIGHT GRAPH — MAXIMUM CONTRAST CONNECTIONS                                 */
-/* Keeps graph links black both on initial render and after interaction.      */
+/* LIGHT GRAPH — SOFTER CONNECTIONS                                           */
+/* Keeps graph links readable without harsh black contrast in light mode.      */
 /* ========================================================================== */
 
 body.theme-light {
-  --graph-line: #000000 !important;
+  --graph-line: rgba(56, 76, 92, 0.42) !important;
 }
 
 body.theme-light .workspace-leaf-content[data-type="graph"],
@@ -3508,9 +3508,9 @@ body.theme-light .workspace-leaf-content[data-type="localgraph"],
 body.theme-light .graph-view,
 body.theme-light .graph-renderer,
 body.theme-light .graph-view-container {
-  --graph-line: #000000 !important;
+  --graph-line: rgba(56, 76, 92, 0.42) !important;
 }
 
 /* ========================================================================== */
-/* END LIGHT GRAPH CONTRAST                                                   */
+/* END LIGHT GRAPH SOFT CONTRAST                                             */
 /* ========================================================================== */
