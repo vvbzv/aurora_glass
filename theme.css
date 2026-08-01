@@ -3007,3 +3007,225 @@ body.theme-dark .modal.mod-community-theme {
   background: #0f1821;
   background-color: #0f1821;
 }
+
+body.theme-light {
+  --aurora-nav-file-bg: rgba(255, 255, 255, 0.22);
+  --aurora-nav-file-hover: rgba(65, 137, 190, 0.08);
+  --aurora-nav-file-icon: rgba(55, 125, 177, 0.30);
+  --aurora-nav-file-icon-active: rgba(45, 128, 190, 0.72);
+  --aurora-nav-file-fold: rgba(255, 255, 255, 0.70);
+  --aurora-nav-folder-bg: rgba(255, 255, 255, 0.16);
+  --aurora-nav-folder-hover: rgba(60, 134, 190, 0.10);
+  --aurora-nav-folder-open-bg: rgba(62, 137, 194, 0.12);
+  --aurora-nav-folder-icon: rgba(80, 151, 202, 0.54);
+  --aurora-nav-folder-tab: rgba(162, 216, 239, 0.78);
+  --aurora-nav-guide: rgba(58, 112, 153, 0.14);
+  --aurora-nav-text: #344653;
+  --aurora-nav-muted: #657481;
+  --aurora-nav-active-text: #17384f;
+  --aurora-type-markdown: rgba(64, 139, 198, 0.66);
+  --aurora-type-canvas: rgba(119, 134, 199, 0.66);
+  --aurora-type-image: rgba(62, 157, 150, 0.66);
+  --aurora-type-pdf: rgba(206, 94, 91, 0.66);
+  --aurora-type-media: rgba(180, 111, 178, 0.64);
+  --aurora-type-code: rgba(77, 148, 188, 0.66);
+  --aurora-type-data: rgba(78, 151, 112, 0.66);
+  --aurora-type-archive: rgba(128, 141, 154, 0.66);
+}
+
+body.theme-dark {
+  --aurora-nav-file-bg: rgba(16, 27, 38, 0.24);
+  --aurora-nav-file-hover: rgba(72, 130, 182, 0.07);
+  --aurora-nav-file-icon: rgba(102, 172, 225, 0.34);
+  --aurora-nav-file-icon-active: rgba(96, 166, 224, 0.76);
+  --aurora-nav-file-fold: rgba(217, 238, 252, 0.24);
+  --aurora-nav-folder-bg: rgba(18, 31, 43, 0.22);
+  --aurora-nav-folder-hover: rgba(79, 143, 195, 0.09);
+  --aurora-nav-folder-open-bg: rgba(82, 146, 198, 0.11);
+  --aurora-nav-folder-icon: rgba(92, 164, 218, 0.46);
+  --aurora-nav-folder-tab: rgba(145, 211, 239, 0.54);
+  --aurora-nav-guide: rgba(116, 172, 216, 0.13);
+  --aurora-nav-text: rgba(224, 237, 247, 0.88);
+  --aurora-nav-muted: rgba(169, 190, 207, 0.72);
+  --aurora-nav-active-text: rgba(241, 248, 253, 0.97);
+  --aurora-type-markdown: rgba(110, 184, 239, 0.70);
+  --aurora-type-canvas: rgba(151, 164, 230, 0.70);
+  --aurora-type-image: rgba(97, 190, 181, 0.70);
+  --aurora-type-pdf: rgba(229, 121, 116, 0.70);
+  --aurora-type-media: rgba(211, 139, 207, 0.68);
+  --aurora-type-code: rgba(110, 191, 222, 0.70);
+  --aurora-type-data: rgba(105, 194, 145, 0.70);
+  --aurora-type-archive: rgba(165, 180, 194, 0.70);
+}
+
+body .nav-files-container {
+  padding: 6px 8px 14px;
+}
+
+body .nav-files-container .nav-file-title,
+body .nav-files-container .nav-folder-title {
+  position: relative;
+  min-height: 28px;
+  margin: 2px 0;
+  border-radius: 6px;
+  color: var(--aurora-nav-muted);
+  transition:
+    background-color var(--anim-duration-fast) var(--ease-out-soft),
+    box-shadow var(--anim-duration-fast) var(--ease-out-soft),
+    color var(--anim-duration-fast) var(--ease-out-soft),
+    transform var(--anim-duration-fast) var(--ease-out-soft);
+}
+
+body .nav-files-container .nav-file-title {
+  --aurora-nav-type-bg: var(--aurora-nav-file-bg);
+  --aurora-nav-type-fold: var(--aurora-nav-file-fold);
+  --aurora-nav-type-line: var(--aurora-nav-file-icon);
+  --aurora-nav-type-active-bg: rgba(255, 255, 255, 0.18);
+}
+
+body .nav-files-container .nav-file-title-content,
+body .nav-files-container .nav-folder-title-content {
+  position: relative;
+  padding-left: 22px;
+}
+
+body .nav-files-container .nav-file-title-content::before,
+body .nav-files-container .nav-folder-title-content::before,
+body .nav-files-container .nav-file-title-content::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+body .nav-files-container .nav-file-title-content::before {
+  width: 11px;
+  height: 14px;
+  border-radius: 3px;
+  background:
+    linear-gradient(135deg, transparent 0 70%, var(--aurora-nav-type-fold) 72% 100%),
+    var(--aurora-nav-type-bg);
+  box-shadow:
+    inset 0 0 0 1px var(--aurora-nav-type-line),
+    0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+body .nav-files-container .nav-file-title-content::after {
+  width: 7px;
+  height: 2px;
+  margin-top: 4px;
+  margin-left: 2px;
+  border-radius: 999px;
+  background-color: var(--aurora-nav-type-line);
+}
+
+body .nav-files-container .nav-folder-title-content::before {
+  width: 15px;
+  height: 11px;
+  border-radius: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--aurora-nav-folder-tab),
+    var(--aurora-nav-folder-icon)
+  );
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 1px 6px rgba(59, 143, 204, 0.10);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".md"] {
+  --aurora-nav-type-line: var(--aurora-type-markdown);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".canvas"] {
+  --aurora-nav-type-line: var(--aurora-type-canvas);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".png"],
+body .nav-files-container .nav-file-title[data-path$=".jpg"],
+body .nav-files-container .nav-file-title[data-path$=".jpeg"],
+body .nav-files-container .nav-file-title[data-path$=".gif"],
+body .nav-files-container .nav-file-title[data-path$=".webp"],
+body .nav-files-container .nav-file-title[data-path$=".svg"] {
+  --aurora-nav-type-line: var(--aurora-type-image);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".pdf"] {
+  --aurora-nav-type-line: var(--aurora-type-pdf);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".mp3"],
+body .nav-files-container .nav-file-title[data-path$=".wav"],
+body .nav-files-container .nav-file-title[data-path$=".flac"],
+body .nav-files-container .nav-file-title[data-path$=".mp4"],
+body .nav-files-container .nav-file-title[data-path$=".mov"],
+body .nav-files-container .nav-file-title[data-path$=".webm"] {
+  --aurora-nav-type-line: var(--aurora-type-media);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".css"],
+body .nav-files-container .nav-file-title[data-path$=".js"],
+body .nav-files-container .nav-file-title[data-path$=".ts"],
+body .nav-files-container .nav-file-title[data-path$=".json"],
+body .nav-files-container .nav-file-title[data-path$=".html"],
+body .nav-files-container .nav-file-title[data-path$=".xml"],
+body .nav-files-container .nav-file-title[data-path$=".yaml"],
+body .nav-files-container .nav-file-title[data-path$=".yml"] {
+  --aurora-nav-type-line: var(--aurora-type-code);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".csv"],
+body .nav-files-container .nav-file-title[data-path$=".xlsx"],
+body .nav-files-container .nav-file-title[data-path$=".xls"] {
+  --aurora-nav-type-line: var(--aurora-type-data);
+}
+
+body .nav-files-container .nav-file-title[data-path$=".zip"],
+body .nav-files-container .nav-file-title[data-path$=".rar"],
+body .nav-files-container .nav-file-title[data-path$=".7z"],
+body .nav-files-container .nav-file-title[data-path$=".tar"],
+body .nav-files-container .nav-file-title[data-path$=".gz"] {
+  --aurora-nav-type-line: var(--aurora-type-archive);
+}
+
+body .nav-files-container .nav-file-title:hover,
+body .nav-files-container .nav-folder-title:hover {
+  transform: translateX(1px);
+}
+
+body.theme-light .nav-files-container .nav-file-title:hover,
+body.theme-dark .nav-files-container .nav-file-title:hover {
+  background-color: var(--aurora-nav-file-hover);
+}
+
+body.theme-light .nav-files-container .nav-folder-title:hover,
+body.theme-dark .nav-files-container .nav-folder-title:hover {
+  background-color: var(--aurora-nav-folder-hover);
+}
+
+body .nav-files-container .nav-folder-children {
+  margin-left: 10px;
+  padding-left: 6px;
+  border-left: 1px solid var(--aurora-nav-guide);
+}
+
+body .nav-files-container .nav-file-title.is-active {
+  color: var(--aurora-nav-active-text);
+}
+
+body .nav-files-container .nav-file-title.is-active .nav-file-title-content,
+body .nav-files-container .nav-file-title.is-active .nav-file-title-content::before {
+  color: var(--aurora-nav-active-text);
+}
+
+body .nav-files-container .nav-file-title.is-active .nav-file-title-content::before {
+  background:
+    linear-gradient(135deg, transparent 0 70%, var(--aurora-nav-type-fold) 72% 100%),
+    var(--aurora-nav-type-active-bg);
+  box-shadow:
+    inset 0 0 0 1px var(--aurora-nav-type-line),
+    0 0 10px rgba(54, 134, 196, 0.16);
+}
