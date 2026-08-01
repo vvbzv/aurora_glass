@@ -10,29 +10,22 @@ Graphite-blue palette, light/dark refinements, tabs, file explorer,
 settings and community-theme-browser styling were customized for this edition.
 */
 
-
-/* Compatibility fixes are included for:
-   Make.md, MySnippets, Day Planner, Remotely Save, and Enchanted Animations.
-*/
-/* ===================== vars ===================== */
 :root {
-  /* tint - hsl-split vars */
+
   --bg-tint-color-h: 240;
   --bg-tint-color-s: 100%;
   --bg-tint-color-l: 50%;
   --bg-tint-opacity: 0;
-  /* 0 = off, zero GPU cost */
+
   --border-opacity: 0.063;
   --glass-opacity: 0;
 
   --tr: #00000000;
 
-  /* Gradient background */
   --gradient-from: #e8f5ee;
   --gradient-to: #c8e6d4;
   --gradient-angle: 135deg;
 
-  /* Custom image URL */
   --bg-custom-url: url('');
 
   --background-blur: 80px;
@@ -46,10 +39,8 @@ settings and community-theme-browser styling were customized for this edition.
   --transparent-border: 1px solid var(--tr);
 }
 
-/* ===================== Theme Presets ===================== */
-/* ===================== Orange Autumn ===================== */
 body.preset-orange {
-  /* Warm orange tint color — intensity controlled per-theme below */
+
   --bg-tint-color-h: 21;
   --bg-tint-color-s: 100%;
   --bg-tint-color-l: 35%;
@@ -57,12 +48,10 @@ body.preset-orange {
   --file-line-width: 700px;
 }
 
-/* Dark mode: rich orange tint over wallpaper */
 body.theme-dark.preset-orange {
   --bg-tint-opacity: 0.28;
 }
 
-/* Light mode: warm autumn gradient, very subtle tint */
 body.theme-light.preset-orange {
   --gradient-from: #fff8f0;
   --gradient-to: #ffd9b3;
@@ -73,10 +62,6 @@ body.preset-orange svg.canvas-background {
   display: none;
 }
 
-/* ===================== Orange ===================== */
-/* ===================== Theme Presets ===================== */
-
-/* in general main things to make this theme work */
 body {
   --background-primary: var(--tr);
   --background-secondary: var(--tr);
@@ -87,37 +72,18 @@ body {
   --input-border-width: 1px;
   --scrollbar-width: 10px;
 
-  /* ===================== Animation Speed Control ===================== */
-
-  /* 
-     Base animation speed.
-     Set to 500ms (0.5s) as a baseline.
-     Changing this value scales all animations proportionally.
-  */
   --animationspeed: 500ms;
 
   --anim-duration-superfast: calc(var(--animationspeed) / 4);
-  /* Result: 125ms */
+
   --anim-duration-fast: calc(var(--animationspeed) / 2);
-  /* Result: 250ms */
+
   --anim-duration-moderate: var(--animationspeed);
-  /* Result: 500ms */
+
   --anim-duration-slow: calc(var(--animationspeed) * 2);
-  /* Result: 1000ms */
+
 }
 
-/* ===================== Specific Animation Overrides ===================== */
-
-/* 
-   Using 'body ...' selector to increase specificity.
-   This avoids using !important while still overriding default Obsidian styles.
-*/
-
-/* 
-   Tooltips
-   Original hardcoded value: 200ms
-   New value: ~250ms
-*/
 body .tooltip,
 body .tooltip.mod-right,
 body .tooltip.mod-left {
@@ -126,41 +92,19 @@ body .tooltip.mod-left {
   backface-visibility: hidden;
 }
 
-/* Large scrollers stay on the browser's normal compositor path.
-   Permanent will-change/translateZ here costs more memory than it saves. */
-
-/* 
-   Multi-select duplicate animation
-   Original: 2000ms
-   New: 3000ms
-*/
 body .multi-select-duplicate {
   animation-duration: calc(var(--animationspeed) * 6);
 }
 
-/* 
-   Text highlight (Ctrl+F)
-   Original: 250ms
-   New: 250ms
-*/
 body .textLayer .highlight {
   transition-duration: var(--anim-duration-fast);
 }
 
-/* 
-   Scroll handles
-   make sure they follow the fast duration 250ms
-*/
 body .v-scroll-handle,
 body .h-scroll-handle {
   transition-duration: var(--anim-duration-fast);
 }
 
-/* ===================== vars ===================== */
-
-/* Global variables */
-
-/* ===================== theme-light ===================== */
 .theme-light .workspace {
   --icon-color: #000000;
   --workspace-drawer-background-color: #00000000;
@@ -170,9 +114,9 @@ body .h-scroll-handle {
   --customaccentcolor: #ffe8d2;
   --brightness: 1.3;
   --kolorboku: #1d1d1f;
-  /* text color readable black */
+
   --tr06: rgba(255, 255, 255, 0.5);
-  /* Light, glass-like inputs */
+
   --interactive-normal: var(--tr06);
   --interactive-hover: rgba(255, 255, 255, 0.7);
   --fakeblur: #f0f0ee;
@@ -181,13 +125,9 @@ body .h-scroll-handle {
     0 0 4px 1px rgba(0, 0, 0, 0.02);
   --background-modifier-border-focus: rgba(0, 0, 0, 0.1);
   --overlay-color: rgba(255, 255, 255, 0.4);
-  /* Elegant, delicate white glass for modals */
-  /*  --tab-text-color-focused: #b6ada3;*/
+
 }
 
-/* ===================== theme-light ===================== */
-
-/* ===================== theme-dark ===================== */
 .theme-dark .workspace {
   --icon-color: #ffffff;
   --workspace-drawer-background-color: #000000;
@@ -196,39 +136,27 @@ body .h-scroll-handle {
 .theme-dark {
   --customaccentcolor: #2e2515;
   --kolorboku: #e2e0dc;
-  /* text color readable white */
+
   --brightness: 0.5;
   --tr06: #00000060;
   --interactive-normal: var(--tr06);
   --interactive-hover: var(--tr06);
   --fakeblur: #0f0f0c;
-  /* fake blur specific to theme-dark */
+
   --input-shadow-hover:
     inset 0 0 0 1px rgba(255, 255, 255, 0.12),
     0 0 4px 1px rgba(255, 255, 255, 0.08);
   --background-modifier-border-focus: #55555560;
-  /*     --color-base-40: #555555; but with 60 */
+
   --overlay-color: #00000080;
-  /* 80 = 50% opacity */
-  /*  --tab-text-color-focused: #666666;*/
+
 }
 
-/* ===================== theme-dark ===================== */
-
-/* ===================== Background System ===================== */
-/*
-   Priority (high wins): preset-true-glass > bg-custom > bg-solid > bg-gradient > bg-auto
-   bg-auto: dark = base64 wallpaper (dimmed), light = soft gradient
-   All styles work in both dark and light mode.
-*/
-
-/* isolation: isolate is mandatory — keeps z-index: -1 scoped inside .app-container */
 .app-container {
   position: relative;
   isolation: isolate;
 }
 
-/* === BASE pseudo-element layout === */
 .app-container::before {
   content: "";
   position: fixed;
@@ -242,22 +170,18 @@ body .h-scroll-handle {
   backface-visibility: hidden;
 }
 
-/* === AUTO (default) === */
-/* Dark auto fallback. The richer final gradient overrides below take precedence. */
 body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
   background-image: linear-gradient(138deg, #18212b 0%, #10171f 52%, #151d26 100%);
   background-color: #111820;
   filter: blur(var(--background-blur));
 }
 
-/* Light auto: soft gradient */
 body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
   background-image: linear-gradient(var(--gradient-angle), var(--gradient-from) 0%, var(--gradient-to) 100%);
   background-color: unset;
   filter: blur(var(--background-blur));
 }
 
-/* === GRADIENT (both modes) === */
 body.bg-gradient .app-container::before {
   background-image: linear-gradient(var(--gradient-angle), var(--gradient-from) 0%, var(--gradient-to) 100%);
   background-color: unset;
@@ -268,7 +192,6 @@ body.theme-dark.bg-gradient .app-container::before {
   filter: brightness(0.75) blur(var(--background-blur));
 }
 
-/* === SOLID (from tint hue, both modes) === */
 body.theme-light.bg-solid .app-container::before {
   background-image: none;
   background-color: hsl(var(--bg-tint-color-h), 30%, 90%);
@@ -281,7 +204,6 @@ body.theme-dark.bg-solid .app-container::before {
   filter: blur(var(--background-blur));
 }
 
-/* === CUSTOM URL (both modes) === */
 body.bg-custom .app-container::before {
   background-image: var(--bg-custom-url);
   background-size: cover;
@@ -293,7 +215,6 @@ body.theme-dark.bg-custom .app-container::before {
   filter: brightness(0.54) blur(var(--background-blur));
 }
 
-/* === GLASS / TRUE GLASS (both modes) === */
 body.preset-true-glass .app-container::before,
 body.theme-light.preset-true-glass .app-container::before,
 body.theme-dark.preset-true-glass .app-container::before {
@@ -311,41 +232,24 @@ body.theme-dark.preset-true-glass .app-container::before {
   background-color: rgba(0, 0, 0, var(--glass-opacity));
 }
 
-/* ===================== Background Color Tint ===================== */
-/*
-   Tint overlay via ::after. Works in both dark and light mode.
-   Default opacity: 0 — zero GPU cost when off.
-   mix-blend-mode: color preserves background luminosity, applies only the hue.
-*/
-
 .app-container::after {
   content: "";
-  /* create the pseudo-element           */
+
   position: fixed;
-  /* cover the entire viewport           */
+
   inset: 0;
-  /* stretch to all edges                */
-  /* build color from hsl-split vars + separate opacity slider */
+
   background-color: hsla(var(--bg-tint-color-h),
       var(--bg-tint-color-s),
       var(--bg-tint-color-l),
       var(--bg-tint-opacity));
   z-index: -1;
-  /* above ::before (bg), below content  */
+
   pointer-events: none;
-  /* don't block any mouse/touch events  */
-  /*
-     mix-blend-mode: color lets the luminosity of the blurred
-     background show through while applying the chosen hue.
-  */
+
   mix-blend-mode: color;
 }
 
-/* ===================== Background Color Tint ===================== */
-
-/* ===================== blurred background via pseudo-element ===================== */
-
-/* left menu text */
 .nav-file-title,
 .nav-folder-title {
   color: var(--kolorboku);
@@ -355,7 +259,6 @@ body.theme-dark.preset-true-glass .app-container::before {
   background-color: var(--background-primary);
 }
 
-/* background image is now on .app-container::before, not here */
 .horizontal-main-container {
   background-size: cover;
   background-position: center;
@@ -369,12 +272,6 @@ body.is-focused .workspace-ribbon.mod-left {
 .workspace-tab-header-container {
   background-color: var(--tr);
 }
-
-/* Enhance visibility of the active tab for better navigation 
-body.is-focused .workspace-tab-header-container .workspace-tab-header {
-  color: #666666;
-}*/
-
 
 .is-hidden-frameless:not(.is-fullscreen).is-focused .titlebar-button-container.mod-right {
   background-color: var(--tr);
@@ -405,11 +302,6 @@ body.theme-dark .prompt {
   background-color: #000000;
 }
 
-/* remember that phone and mobile are two different things, just so you don't get confused when editing after a break 
-is-phone
-is-tablet
-is-mobile - tablet and phone
-*/
 .modal-bg {
   width: 100%;
   background-color: var(--tr);
@@ -417,15 +309,13 @@ is-mobile - tablet and phone
 
 hr {
   border-color: var(--kolorboku);
-  /* horizontal line fix */
 
   margin: 0;
 }
 
-
 .menu-separator {
   border-bottom: 0 solid;
-  /* right mouse button */
+
 }
 
 body:not(.is-mobile):not(.enchanted-animations-present) .prompt {
@@ -444,11 +334,8 @@ body:not(.is-mobile):not(.enchanted-animations-present) .prompt {
   }
 }
 
-/* ==================== Mobile menu & prompt animations ==================== */
-/* is-mobile covers both phone and tablet */
-/* 750ms suits better here, but will be refined in a future update */
 body.is-phone:not(.enchanted-animations-present) .menu {
-  /* phone only — on tablet this animation looks poor */
+
   animation: tr-mobile-slide-up var(--anim-duration-slow) var(--ease-out-smooth);
 }
 
@@ -456,8 +343,6 @@ body.is-mobile:not(.enchanted-animations-present) .prompt {
   animation: tr-mobile-slide-up var(--anim-duration-slow) var(--ease-out-smooth);
 }
 
-/* ==================== Settings mobile bypass ==================== */
-/* im really proud of this tbh */
 @keyframes tr-settings-slide {
   0% {
     opacity: 0;
@@ -480,8 +365,6 @@ body.is-phone:not(.enchanted-animations-present) .modal.mod-settings .vertical-t
   animation: tr-settings-slide var(--anim-duration-slow) var(--ease-out-smooth) both;
 }
 
-/* end ==================== Settings mobile drill-down ==================== */
-
 @keyframes tr-mobile-slide-up {
   from {
     opacity: 0;
@@ -494,21 +377,12 @@ body.is-phone:not(.enchanted-animations-present) .modal.mod-settings .vertical-t
   }
 }
 
-/* Mobile toolbar options list (tablet & phone bottom toolbar) */
-/*.is-mobile .mobile-toolbar-options-container {
-  animation: tr-mobile-slide-up var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1);
-}
-  commented out because it wasnt really good looking 
-*/
-
-/* High specificity required to override default Obsidian styling */
 body.theme-dark .modal-container .modal.mod-settings .vertical-tab-content,
 body.theme-light .modal-container .modal.mod-settings .vertical-tab-content {
   background-color: var(--tr);
   background: var(--tr);
 }
 
-/* dont add blur in small places because its useless */
 textarea,
 input.metadata-input-text,
 input[type="date"],
@@ -521,12 +395,10 @@ input[type="number"] {
   background-color: var(--tr06);
 }
 
-/* sliders */
 input[type="range"] {
   background-color: hsla(var(--interactive-accent-hsl), 0.5);
   accent-color: hsla(var(--color-accent-hsl), 0.6);
 }
-
 
 .suggestion-container.mod-search-suggestion {
   background-color: var(--tr);
@@ -536,20 +408,17 @@ input[type="range"] {
   max-height: 600px;
 }
 
-/* Button styling */
 button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-collapse-button):not(.nn-mobile-toolbar-button):not(.copy-code-button) {
-  /* "nn" prefix = Notebook Navigator plugin integration */
+
   background-color: var(--color-accent);
   box-shadow: none;
   color: var(--text-on-accent);
 }
 
-/* right click on top right centered down arrow adjustments */
 .menu-scroll {
   display: inline;
 }
 
-/* presentation background fix */
 .reveal .slide-background-content {
   background-image: none;
   background-color: transparent;
@@ -568,7 +437,6 @@ button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-colla
   color: var(--color-accent);
 }
 
-/* done task fix */
 input[type="checkbox"]:checked:after {
   background-color: #1c2e28;
 }
@@ -583,9 +451,6 @@ select.dropdown option {
   background-color: var(--background-primary-alt);
 }
 
-
-
-/* blur of 80px looks bad there */
 .status-bar {
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
@@ -599,7 +464,6 @@ body:not(.enchanted-animations-present) .notice {
   animation: tr-notice-in-desktop var(--anim-duration-slow) var(--ease-out-smooth);
 }
 
-/* ==================== Notice animation ==================== */
 body.is-phone:not(.enchanted-animations-present) .notice {
   animation: tr-notice-in-mobile 1000ms cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -628,22 +492,17 @@ body.is-phone:not(.enchanted-animations-present) .notice {
   }
 }
 
-/* ==================== Notice animation ==================== */
-
-/* consistency */
 .canvas-control-item:hover {
   background-color: var(--background-modifier-hover);
 }
 
-
-/* graph view */
 .graph-controls {
   background-color: #00000080;
   -webkit-backdrop-filter:
-    /*brightness(var(--brightness))*/
+
     blur(12px);
   backdrop-filter:
-    /*brightness(var(--brightness))*/
+
     blur(12px);
 }
 
@@ -652,7 +511,6 @@ body.is-phone:not(.enchanted-animations-present) .notice {
   border: 0 solid var(--tr);
 }
 
-/* Table border styling */
 body .markdown-rendered th,
 body .markdown-rendered td,
 body .cm-html-embed th,
@@ -667,7 +525,6 @@ body .cm-html-embed thead tr>th {
   border-inline-end: 0;
 }
 
-/* Code block and inline code backgrounds */
 .cm-s-obsidian div.HyperMD-codeblock-bg,
 .cm-s-obsidian .cm-inline-code:not(.cm-formatting),
 .markdown-rendered pre,
@@ -675,7 +532,6 @@ body .cm-html-embed thead tr>th {
 .cm-s-obsidian span.cm-inline-code {
   background-color: var(--tr06);
 }
-
 
 .checkbox-container:after {
   background-color: #00000099;
@@ -691,12 +547,10 @@ input[type="range"]::-webkit-slider-thumb {
   border-color: var(--color-accent);
 }
 
-/* canvas */
 body.hide-canvas-dots svg.canvas-background {
   display: none;
 }
 
-/* Canvas export / screenshot background fix */
 .theme-dark .canvas-wrapper.is-screenshotting,
 .theme-light .canvas-wrapper.is-screenshotting {
   background-color: var(--fakeblur);
@@ -719,10 +573,9 @@ body.hide-canvas-dots svg.canvas-background {
 
 .canvas-color-picker-item {
   border: none;
-  /* smoother color pallet looks */
+
 }
 
-/* hover on links */
 .popover.hover-popover .markdown-preview-view {
   background-color: var(--tr);
   -webkit-backdrop-filter: var(--frosted-ui-filter);
@@ -733,29 +586,21 @@ body.hide-canvas-dots svg.canvas-background {
   background-color: var(--tr06);
 }
 
-/* tasks integration */
-
-/* make.md integration */
-
 .mk-menu-container {
   width: auto;
 }
 
-/* templater code look better */
 .cm-s-obsidian .templater-command-bg {
   background-color: var(--tr06);
 }
 
-/* better settings */
 .vertical-tab-header-group-title {
   color: var(--color-accent);
 }
 
-/* you can find this in canvas for example after hovering over menu on the right  */
-
 .tooltip {
   background-color: var(--fakeblur);
-  /* this color is a fake blur used in places where real blur can't be applied or it is soo small so it doesn't make sense to apply it */
+
   color: var(--text-normal);
 }
 
@@ -771,16 +616,13 @@ body.hide-canvas-dots svg.canvas-background {
   border-left: 5px solid var(--fakeblur);
 }
 
-/* bases */
-/* there's definitely a lot to do with fake blur here because when elements overlap each other you get shades of black instead of the intended theme aesthetic */
 .bases-table-container {
   background: var(--tr);
 }
 
-/* these 3 things are for the table in bases */
 .bases-tr {
   box-shadow: 0 calc(var(--bases-table-row-border-width) * -1) 0 rgba(255, 255, 255, var(--border-opacity));
-  /* only the color matters here but the rest must stay */
+
 }
 
 .bases-td {
@@ -793,7 +635,7 @@ body.hide-canvas-dots svg.canvas-background {
 
 .markdown-source-view.mod-cm6 .cm-scroller {
   background-color: var(--tr);
-  /*  backdrop-filter: blur(var(--ui-blur)); */
+
 }
 
 .popover.hover-popover.is-editing {
@@ -820,21 +662,17 @@ body.hide-canvas-dots svg.canvas-background {
   backdrop-filter: var(--frosted-ui-filter);
 }
 
-
-/* ===================== mobile ===================== */
 .is-phone .menu-group .menu-item.is-label {
-  /* better context menu label on folders */
+
   padding: 6px 16px;
   margin: 8px 12px;
   color: var(--text-normal);
 }
 
-/* better settings on mobile  */
 .is-phone .vertical-tab-header-group-title {
   color: var(--color-accent);
 }
 
-/* tab manager on mobile/ */
 .mobile-tab-preview-empty {
   box-shadow: none;
 }
@@ -842,8 +680,6 @@ body.hide-canvas-dots svg.canvas-background {
 .mobile-tab-preview:before {
   box-shadow: 0 0 30px 15px rgba(0, 0, 0, 0.2);
 }
-
-/* */
 
 .is-phone .workspace-drawer {
   background-color: var(--tr);
@@ -856,8 +692,6 @@ body.hide-canvas-dots svg.canvas-background {
   backdrop-filter: var(--frosted-ui-filter);
   border-color: var(--tr);
 }
-
-/* github issue #4 fix */
 
 .mobile-toolbar {
   background-color: var(--tr);
@@ -878,7 +712,6 @@ body.hide-canvas-dots svg.canvas-background {
   backdrop-filter: blur(var(--ui-blur));
 }
 
-/* right sidebar menu for those extensions */
 .is-phone .workspace-drawer-tab-options-list {
   background-color: #000000;
 }
@@ -888,23 +721,13 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .theme-dark.is-phone .workspace-drawer .nav-buttons-container .nav-action-button {
-  /* background-color: #1d1e19; 
-  Hardcoded value due to specificity challenges */
+
   z-index: 1;
 }
 
 .theme-light.is-phone .workspace-drawer .nav-buttons-container .nav-action-button {
-  /* background-color: #ffffff; 
-  Hardcoded value due to specificity challenges */
-  z-index: 1;
-}
 
-/* fade at the bottom of file list, behind nav buttons */
-.is-phone .workspace-drawer .nav-files-container {
-  -webkit-mask-image: linear-gradient(to bottom,
-      black calc(100% - 120px),
-      var(--tr));
-  mask-image: linear-gradient(to bottom, black calc(100% - 120px), var(--tr));
+  z-index: 1;
 }
 
 .setting-group .setting-items {
@@ -919,7 +742,6 @@ body.hide-canvas-dots svg.canvas-background {
   background-color: var(--tr);
 }
 
-/* Hide every scrollbar in obsidian based from https://github.com/Lithou/Sandbox/blob/main/.obsidian/snippets/scrollbar.css */
 ::-webkit-scrollbar {
   visibility: hidden;
 }
@@ -944,8 +766,6 @@ body.show-scrollbars ::-webkit-scrollbar-thumb {
   visibility: initial;
 }
 
-/* until there thanks Lithou */
-
 .markdown-rendered hr {
   border-color: rgba(255, 255, 255, var(--border-opacity));
 }
@@ -969,19 +789,16 @@ body.show-scrollbars ::-webkit-scrollbar-thumb {
   backface-visibility: hidden;
 }
 
-
 .is-mobile.is-floating-nav .mod-raised {
   -webkit-backdrop-filter: brightness(var(--brightness)) blur(12px);
   backdrop-filter: brightness(var(--brightness)) blur(12px);
 }
 
-/* Remove backdrop-filter specifically from the settings icon in the mobile drawer header when beta option is enabled */
 body.is-mobile.disable-drawer-dimming .clickable-icon.workspace-drawer-header-icon.mod-raised.mod-settings {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
-/* blur + dimming when sliding sidebars is disabled */
 .workspace-drawer-inner {
   -webkit-backdrop-filter: var(--frosted-ui-filter);
   backdrop-filter: var(--frosted-ui-filter);
@@ -993,16 +810,14 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
   backdrop-filter: none;
 }
 
-/* when sliding sidebars is enabled - no blur or dimming */
 .is-sliding .workspace-drawer-inner {
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
-/* background dimming behind drawer when sliding sidebars is disabled */
 .workspace-drawer-backdrop {
   background-color: var(--tr);
-  /* was 0.5 */
+
   transition: opacity var(--ease-out-smooth) var(--anim-duration-slow);
 }
 
@@ -1021,11 +836,6 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
   border: 0;
 }
 
-/* community themes fix top right X button 
-.is-phone .community-modal-controls {
-  padding-top: var(--size-4-12); 
-}
-*/
 .is-mobile .metadata-content {
   background-color: var(--tr);
 }
@@ -1034,17 +844,15 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border-radius: 24px;
-  /* fixed because of difference between mobile and desktop */
+
   gap: 4px;
 
 }
-
 
 .metadata-property-icon {
   padding: var(--size-4-1) 5px;
 }
 
-/* syncs */
 .sync-status-icon.mod-error {
   color: #dadada90;
 }
@@ -1053,7 +861,6 @@ body.default-sync-error .sync-status-icon.mod-error {
   color: var(--text-error);
 }
 
-/* ===================== settings open animation ===================== */
 @keyframes modal-open {
   from {
     opacity: 0;
@@ -1076,17 +883,13 @@ body.default-sync-error .sync-status-icon.mod-error {
   }
 }
 
-/* Settings Modal Open Animation */
 body:not(.disable-modal-animation):not(.enchanted-animations-present) .modal {
   animation: modal-open calc(var(--animationspeed) * 0.7) cubic-bezier(0.2, 0, 0, 1) forwards;
 }
 
-/* Modal Background Dimming */
 body:not(.disable-modal-animation):not(.enchanted-animations-present) .modal-bg {
   animation: modal-bg-fade calc(var(--animationspeed) * 0.7) cubic-bezier(0.2, 0, 0, 1) forwards;
 }
-
-/* ===================== code blocks border radius ===================== */
 
 .cm-s-obsidian div.HyperMD-codeblock-begin-bg {
   border-top-left-radius: var(--radius-l);
@@ -1102,12 +905,9 @@ body:not(.disable-modal-animation):not(.enchanted-animations-present) .modal-bg 
   border-radius: var(--radius-l);
 }
 
-/* mobile settings improvements */
 .is-phone .modal .vertical-tab-header-group-title {
   color: var(--color-accent);
 }
-
-/* ===================== Accent Everywhere Snippet ===================== */
 
 body.accent-everywhere.theme-dark,
 body.accent-everywhere.theme-light {
@@ -1151,14 +951,6 @@ body.accent-everywhere hr {
   border-color: var(--hr-color);
 }
 
-/* ===================== Accent Everywhere Snippet ===================== */
-
-/* ===================== Animate Note Opening ===================== */
-/*
-   Smooth fade-in + slide-up animation when opening or switching notes
-   Uses existing --animationspeed variable
-*/
-
 @keyframes tr-note-fade-in {
   from {
     opacity: 0;
@@ -1171,35 +963,24 @@ body.accent-everywhere hr {
   }
 }
 
-/* Main note view - mod-root excludes side-panels, '>' excludes embeds */
 body.preset-orange .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-reading-view,
 body.preset-orange .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-source-view,
 body.preset-orange .workspace-leaf.mod-active .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-reading-view,
 body.preset-orange .workspace-leaf.mod-active .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-source-view,
 body.animate-note-open .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-reading-view,
 body.animate-note-open .workspace-split.mod-root .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-source-view,
-/* mod-active re-fires animation when switching note from the left file panel */
+
 body.animate-note-open:not(.enchanted-animations-present) .workspace-leaf.mod-active .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-reading-view,
 body.animate-note-open:not(.enchanted-animations-present) .workspace-leaf.mod-active .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-source-view {
   animation: tr-note-fade-in var(--anim-duration-moderate) var(--ease-out-smooth);
 }
 
-/* ===================== Animate Note Opening ===================== */
-
-/* ===================== No animations ===================== */
 body.no-animation *,
 body.no-animation *::before,
 body.no-animation *::after {
   transition-duration: 0s;
   animation-duration: 0s;
 }
-
-/* ===================== No animations ===================== */
-
-/* ===================== Startup Animation (Splash Screen) ===================== */
-/* as for 18 may 2026 this code works on mobile and computer */
-/* this is not my code in general it is inspired by */
-/* Benjamin Fernandez - github.com/benfernandezmedia */
 
 body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-present)::before {
   content: "";
@@ -1242,10 +1023,6 @@ body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-pr
   }
 }
 
-/* ===================== Startup Animation (Splash Screen) ===================== */
-
-/* ===================== Header Animations ===================== */
-
 body:not(.disable-header-animations):not(.enchanted-animations-present) .markdown-source-view.mod-cm6 .cm-line.HyperMD-header .cm-formatting-header {
   position: absolute;
   top: auto;
@@ -1264,19 +1041,16 @@ body:not(.disable-header-animations):not(.enchanted-animations-present) .markdow
   }
 }
 
-/* line loses focus */
 body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.HyperMD-header {
   position: relative;
   transform: translateX(0);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* line gains focus */
 body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header {
   transition: transform 0.5s var(--ease-pop);
 }
 
-/* Hardcoded indent per header level — may need revisiting if header font sizes change */
 body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-1 {
   transform: translateX(20px);
 }
@@ -1301,64 +1075,41 @@ body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-a
   transform: translateX(70px);
 }
 
-/* ===================== Inline Formatting Animations ===================== */
-/* ogolnie to mega dumny jestem z tego kawałka kodu :))) */
-
 @keyframes premiumHorizontalPush {
   0% {
-    /* left right */
+
     opacity: 0;
     transform: scale(0.85);
   }
 
   100% {
-    /* left right */
+
     opacity: 1;
     transform: scale(1);
   }
 }
 
-/* Animates inline markers on the active line.
-  Excludes headings, list items, checkboxes, and multi-line code blocks.
-*/
 body:not(.disable-formatting-animations):not(.enchanted-animations-present) .markdown-source-view.mod-cm6 .cm-line.cm-active:not(.HyperMD-codeblock) .cm-formatting:not(.cm-formatting-header):not(.cm-formatting-list):not(.cm-formatting-task) {
   display: inline-block;
   vertical-align: baseline;
   line-height: 0;
   padding-block: 0;
-  /* top down */
+
   will-change: transform, opacity;
   backface-visibility: hidden;
   animation: premiumHorizontalPush 0.3s cubic-bezier(0.25, 1, 0.5, 1.05) forwards;
 }
 
-/* ===================== Inline Formatting Animations ===================== */
-
-/* ===================== Checkbox Animations (from Enchanted Animations) ===================== */
-/*
-   Integration with Enchanted Animations plugin:
-   - disable-checkbox-animations is a shared kill switch (body-class toggle)
-     that disables checkbox animations from BOTH the theme AND the plugin.
-   - Plugin OFF → theme checkbox animations apply (using --animationspeed)
-   - Plugin ON, checkbox option OFF → theme checkbox animations still apply
-   - Plugin ON, checkbox option ON → plugin styles take priority
-     (with its own --enchanted-animations-speed / --enchanted-animations-easing)
-   - disable-checkbox-animations ON → no checkbox animations anywhere
-*/
-
-/* Smooth transition on checkbox scale */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"],
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox {
   transition: transform calc(var(--animationspeed) * 0.5) var(--ease-out-soft);
 }
 
-/* Press-down squish */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]:active,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox:active {
   transform: scale(0.85);
 }
 
-/* Pop animation when checked */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]:checked,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox:checked {
   animation: tr-checkbox-pop calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
@@ -1370,7 +1121,6 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
   100% { transform: scale(1); }
 }
 
-/* Checkmark icon transition */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]::after,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox::after {
   transition:
@@ -1378,7 +1128,6 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
     opacity calc(var(--animationspeed) * 0.5) var(--ease-out-soft);
 }
 
-/* Checkmark pop on check */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]:checked::after,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox:checked::after {
   animation: tr-checkmark-pop calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
@@ -1386,7 +1135,6 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
   opacity: 1;
 }
 
-/* Checkmark disappear on uncheck */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]:not(:checked)::after,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox:not(:checked)::after {
   transform: scale(0);
@@ -1398,23 +1146,17 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* Strike-through animation for task list items (Reading View) */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item {
   transition:
     opacity calc(var(--animationspeed) * 0.8) var(--ease-out-soft),
-    color calc(var(--animationspeed) * 0.8) var(--ease-out-soft),
-    text-decoration-color calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
-  text-decoration-line: line-through;
-  text-decoration-color: transparent;
+    color calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
 }
 
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item.is-checked {
   opacity: 0.6;
-  text-decoration-color: var(--text-muted);
   color: var(--text-muted);
 }
 
-/* Animated strikethrough in Live Preview */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task] {
   text-decoration: none;
 }
@@ -1438,7 +1180,6 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-so
   color: var(--text-muted);
 }
 
-/* Strikethrough line animation in Live Preview */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .cm-strikethrough {
   display: inline-block;
   position: relative;
@@ -1458,7 +1199,6 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .cm-striketh
   animation: tr-strikethrough-anim calc(var(--animationspeed) * 0.8) var(--ease-out-soft) forwards;
 }
 
-/* Reading mode strike-through */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-preview-view .task-list-item.is-checked s,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-preview-view .task-list-item.is-checked del {
   text-decoration: none;
@@ -1484,9 +1224,6 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-pr
   100% { transform: scaleX(1); }
 }
 
-/* ===================== Checkbox Animations ===================== */
-
-/* ===================== iOS Fixes ===================== */
 body.is-ios .app-container .workspace,
 body.is-ios .app-container .workspace-split,
 body.is-ios .app-container .workspace-leaf,
@@ -1495,14 +1232,6 @@ body.is-ios .app-container .view-content,
 body.is-ios .app-container .view-header {
   background-color: var(--tr);
 }
-
-/* ========================================================================== */
-/* CUSTOM GRAPHITE BLUE GLASS OVERRIDES                                       */
-/* Customized by OtmiVi on top of Oczko24 / Obsidian Transparent, while     */
-/* preserving its animations, mobile fixes and integrations.  */
-/* ========================================================================== */
-
-/* ===================== Blue palette (dark mode) ===================== */
 
 body.theme-dark {
   --accent-h: 207;
@@ -1528,19 +1257,10 @@ body.theme-dark {
   --custom-blue-accent: rgba(92, 158, 215, 0.68);
   --custom-blue-glow: rgba(55, 120, 180, 0.16);
 
-  /* Slightly cooler fake surfaces used where real blur is intentionally avoided. */
   --fakeblur: #111820;
   --overlay-color: rgba(10, 17, 24, 0.78);
   --background-primary-alt: #17212b;
 }
-
-
-/* ===================== Animated dark Auto background ===================== */
-/*
-   Only replaces the theme's default Dark/Auto wallpaper.
-   Gradient, Solid, Custom Image and True Glass continue to use the original
-   theme logic.
-*/
 
 body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
   background-image:
@@ -1656,9 +1376,6 @@ body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tru
   }
 }
 
-
-/* ===================== Glass separators / sidebars ===================== */
-
 body.theme-dark .workspace-split.mod-left-split {
   border-right: 1px solid var(--custom-glass-border);
 }
@@ -1682,7 +1399,6 @@ body.theme-dark .workspace-sidedock-vault-profile {
   border-top: 1px solid rgba(120, 170, 215, 0.06);
 }
 
-/* Main tab strip and application top line */
 body.theme-dark .workspace-split.mod-root > .workspace-tabs > .workspace-tab-header-container {
   border-bottom: 1px solid rgba(125, 175, 218, 0.075);
   box-shadow: 0 1px 0 rgba(60, 120, 175, 0.03);
@@ -1691,9 +1407,6 @@ body.theme-dark .workspace-split.mod-root > .workspace-tabs > .workspace-tab-hea
 body.theme-dark .titlebar {
   border-bottom: 1px solid rgba(125, 175, 218, 0.065);
 }
-
-
-/* ===================== Active file ===================== */
 
 body.theme-dark .nav-file-title.is-active {
   background: linear-gradient(
@@ -1719,9 +1432,6 @@ body.theme-dark .nav-file-title:hover {
 body.theme-dark .nav-folder-title:hover {
   background-color: rgba(72, 130, 182, 0.035);
 }
-
-
-/* ===================== Active main tab ===================== */
 
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active {
   background: linear-gradient(
@@ -1752,9 +1462,6 @@ body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):
   background-color: rgba(70, 126, 177, 0.03);
 }
 
-
-/* ===================== Menus / prompts / generic modals ===================== */
-
 body.theme-dark .menu,
 body.theme-dark .prompt,
 body.theme-dark .modal {
@@ -1774,12 +1481,6 @@ body.theme-dark .suggestion-item:hover {
   background-color: rgba(64, 126, 184, 0.10);
 }
 
-
-/* ========================================================================== */
-/* SETTINGS / ADMIN — BLUE GLASS                                              */
-/* ========================================================================== */
-
-/* Settings shell */
 body.theme-dark .modal-container .modal.mod-settings {
   background-color: rgba(11, 18, 25, 0.86);
   --settings-background: rgba(11, 18, 25, 0.86);
@@ -1790,7 +1491,6 @@ body.theme-dark .modal-container .modal.mod-settings {
     inset 0 1px 0 rgba(165, 210, 245, 0.03);
 }
 
-/* Left settings navigation */
 body.theme-dark .modal.mod-settings .vertical-tab-header {
   background: linear-gradient(
     180deg,
@@ -1800,7 +1500,6 @@ body.theme-dark .modal.mod-settings .vertical-tab-header {
   border-right: 1px solid rgba(115, 170, 215, 0.09);
 }
 
-/* Main settings content stays translucent and keeps original layout */
 body.theme-dark .modal-container .modal.mod-settings .vertical-tab-content,
 body.theme-dark .modal-container .modal.mod-settings .vertical-tab-content-container {
   background-color: rgba(11, 18, 25, 0.30);
@@ -1829,7 +1528,6 @@ body.theme-dark .modal.mod-settings .vertical-tab-nav-item.is-active {
   color: rgba(244, 249, 253, 0.98);
 }
 
-/* Settings row separators */
 body.theme-dark .modal.mod-settings .setting-item {
   border-color: rgba(115, 165, 205, 0.05);
 }
@@ -1841,13 +1539,6 @@ body.theme-dark .modal.mod-settings .setting-item-name {
 body.theme-dark .modal.mod-settings .setting-item-description {
   color: rgba(167, 190, 210, 0.72);
 }
-
-
-/* ===================== Settings inputs — geometry untouched ===================== */
-/*
-   Important: only visual properties are overridden here.
-   No appearance, width, height, padding, line-height or positioning changes.
-*/
 
 body.theme-dark .modal.mod-settings textarea,
 body.theme-dark .modal.mod-settings input.metadata-input-text,
@@ -1895,13 +1586,6 @@ body.theme-dark .modal.mod-settings input[type="number"]:focus {
     0 0 0 2px rgba(62, 137, 197, 0.075);
 }
 
-
-/* ===================== Settings selects — preserve native behavior ===================== */
-/*
-   No appearance:none, no custom arrow, and no padding/size overrides.
-   This avoids the Linux/Chromium select breakage seen with aggressive styling.
-*/
-
 body.theme-dark .modal.mod-settings select,
 body.theme-dark .modal.mod-settings select.dropdown {
   background-color: #17232e;
@@ -1926,16 +1610,11 @@ body.theme-dark .modal.mod-settings select.dropdown:focus {
     0 0 0 2px rgba(62, 137, 197, 0.075);
 }
 
-/* Opaque native popup options render more reliably on Linux / Chromium. */
 body.theme-dark .modal.mod-settings select option,
 body.theme-dark .modal.mod-settings select.dropdown option {
   background-color: #17232e;
   color: #e5eff7;
 }
-
-
-/* ===================== Settings switches — preserve mechanics ===================== */
-/* Only recolor the existing Obsidian switch; movement and dimensions stay native. */
 
 body.theme-dark .modal.mod-settings .checkbox-container {
   background-color: rgba(52, 67, 80, 0.82);
@@ -1961,9 +1640,6 @@ body.theme-dark .modal.mod-settings .checkbox-container::after {
   background-color: rgba(241, 247, 251, 0.96);
 }
 
-
-/* ===================== Sliders ===================== */
-
 body.theme-dark .modal.mod-settings input[type="range"] {
   background-color: rgba(67, 139, 197, 0.42);
   accent-color: var(--color-accent);
@@ -1973,9 +1649,6 @@ body.theme-dark .modal.mod-settings input[type="range"]::-webkit-slider-thumb {
   background: var(--color-accent);
   border-color: var(--color-accent);
 }
-
-
-/* ===================== Settings buttons / hotkeys / cards ===================== */
 
 body.theme-dark .modal.mod-settings button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-collapse-button):not(.nn-mobile-toolbar-button):not(.copy-code-button) {
   background-color: hsl(207, 58%, 46%);
@@ -2013,9 +1686,6 @@ body.theme-dark .modal.mod-settings a:hover {
   color: hsl(202, 82%, 75%);
 }
 
-
-/* ===================== Scrollbars / split handles ===================== */
-
 body.theme-dark ::-webkit-scrollbar-thumb {
   background-color: rgba(108, 161, 205, 0.11);
   border-radius: 999px;
@@ -2033,36 +1703,22 @@ body.theme-dark .workspace-leaf-resize-handle:hover {
   background-color: rgba(92, 160, 217, 0.18);
 }
 
-/* ===================== End Graphite Blue overrides ===================== */
-/* ========================================================================== */
-/* CUSTOM FROSTED LIGHT + MARK / INLINE CODE OVERRIDES                       */
-/* ========================================================================== */
-
-/* ===================== Highlight / inline code ===================== */
-
-/* Dark: warm amber highlight to contrast with the blue UI. */
 body.theme-dark .markdown-rendered mark,
 body.theme-dark .markdown-source-view.mod-cm6 .cm-highlight {
   background-color: rgba(224, 166, 70, 0.22);
   color: #f6d99c;
   box-shadow: inset 0 0 0 1px rgba(238, 190, 104, 0.12);
   border-radius: 4px;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
-/* Light: same amber family, darker text for readability. */
 body.theme-light .markdown-rendered mark,
 body.theme-light .markdown-source-view.mod-cm6 .cm-highlight {
   background-color: rgba(219, 151, 43, 0.18);
   color: #704700;
   box-shadow: inset 0 0 0 1px rgba(185, 121, 21, 0.12);
   border-radius: 4px;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
-/* Inline code gets its own cool cyan/teal identity. */
 body.theme-dark .cm-s-obsidian .cm-inline-code:not(.cm-formatting),
 body.theme-dark .cm-s-obsidian span.cm-inline-code,
 body.theme-dark .markdown-rendered :not(pre) > code {
@@ -2081,7 +1737,6 @@ body.theme-light .markdown-rendered :not(pre) > code {
   border-radius: 5px;
 }
 
-/* Keep fenced code blocks calmer than inline code. */
 body.theme-dark .cm-s-obsidian div.HyperMD-codeblock-bg,
 body.theme-dark .markdown-rendered pre {
   background-color: rgba(28, 53, 74, 0.38);
@@ -2101,12 +1756,6 @@ body.theme-light .markdown-rendered pre code {
   box-shadow: none;
   border-radius: 0;
 }
-
-
-/* ========================================================================== */
-/* LIGHT MODE — FROSTED BLUE GLASS                                            */
-/* Mirrors the graphite-blue dark mode with brighter surfaces.                */
-/* ========================================================================== */
 
 body.theme-light {
   --accent-h: 207;
@@ -2150,9 +1799,6 @@ body.theme-light {
 body.theme-light .workspace {
   --icon-color: #31485a;
 }
-
-
-/* ===================== Animated light Auto background ===================== */
 
 body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
   background-image:
@@ -2257,9 +1903,6 @@ body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tr
   }
 }
 
-
-/* ===================== Glass separators / sidebars ===================== */
-
 body.theme-light .workspace-split.mod-left-split {
   border-right: 1px solid var(--custom-glass-border);
 }
@@ -2292,9 +1935,6 @@ body.theme-light .titlebar {
   border-bottom: 1px solid rgba(68, 124, 168, 0.085);
 }
 
-
-/* ===================== Active file ===================== */
-
 body.theme-light .nav-file-title.is-active {
   background: linear-gradient(
     90deg,
@@ -2319,9 +1959,6 @@ body.theme-light .nav-file-title:hover {
 body.theme-light .nav-folder-title:hover {
   background-color: rgba(65, 137, 190, 0.045);
 }
-
-
-/* ===================== Active main tab ===================== */
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
   background: linear-gradient(
@@ -2352,9 +1989,6 @@ body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active)
   background-color: rgba(65, 137, 190, 0.045);
 }
 
-
-/* ===================== Menus / prompts / generic modals ===================== */
-
 body.theme-light .menu,
 body.theme-light .prompt,
 body.theme-light .modal {
@@ -2373,11 +2007,6 @@ body.theme-light .suggestion-item.is-selected,
 body.theme-light .suggestion-item:hover {
   background-color: rgba(55, 135, 194, 0.10);
 }
-
-
-/* ========================================================================== */
-/* SETTINGS / ADMIN — LIGHT BLUE GLASS                                        */
-/* ========================================================================== */
 
 body.theme-light .modal-container .modal.mod-settings {
   background-color: rgba(244, 249, 252, 0.88);
@@ -2438,8 +2067,6 @@ body.theme-light .modal.mod-settings .setting-item-description {
   color: rgba(73, 96, 113, 0.74);
 }
 
-
-/* Settings inputs: visual-only overrides; geometry remains native. */
 body.theme-light .modal.mod-settings textarea,
 body.theme-light .modal.mod-settings input.metadata-input-text,
 body.theme-light .modal.mod-settings input[type="date"],
@@ -2486,8 +2113,6 @@ body.theme-light .modal.mod-settings input[type="number"]:focus {
     0 0 0 2px rgba(49, 132, 193, 0.075);
 }
 
-
-/* Selects: keep native appearance/arrow/size for Linux + Chromium reliability. */
 body.theme-light .modal.mod-settings select,
 body.theme-light .modal.mod-settings select.dropdown {
   background-color: #edf5f9;
@@ -2518,8 +2143,6 @@ body.theme-light .modal.mod-settings select.dropdown option {
   color: #253746;
 }
 
-
-/* Switches: recolor only; native dimensions and mechanics stay untouched. */
 body.theme-light .modal.mod-settings .checkbox-container {
   background-color: rgba(175, 191, 203, 0.70);
   box-shadow: inset 0 0 0 1px rgba(74, 119, 153, 0.08);
@@ -2544,8 +2167,6 @@ body.theme-light .modal.mod-settings .checkbox-container::after {
   background-color: rgba(250, 252, 253, 0.98);
 }
 
-
-/* Sliders */
 body.theme-light .modal.mod-settings input[type="range"] {
   background-color: rgba(67, 139, 197, 0.30);
   accent-color: var(--color-accent);
@@ -2556,8 +2177,6 @@ body.theme-light .modal.mod-settings input[type="range"]::-webkit-slider-thumb {
   border-color: var(--color-accent);
 }
 
-
-/* Buttons / hotkeys / cards */
 body.theme-light .modal.mod-settings button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-collapse-button):not(.nn-mobile-toolbar-button):not(.copy-code-button) {
   background-color: hsl(207, 58%, 46%);
   color: #f7fbfd;
@@ -2594,8 +2213,6 @@ body.theme-light .modal.mod-settings a:hover {
   color: hsl(203, 76%, 33%);
 }
 
-
-/* Scrollbars / split handles */
 body.theme-light ::-webkit-scrollbar-thumb {
   background-color: rgba(73, 130, 173, 0.15);
   border-radius: 999px;
@@ -2613,17 +2230,6 @@ body.theme-light .workspace-leaf-resize-handle:hover {
   background-color: rgba(50, 125, 184, 0.20);
 }
 
-/* ===================== End Frosted Light overrides ===================== */
-
-/* ========================================================================== */
-/* FINAL CONSOLIDATED UI POLISH                                               */
-/* ========================================================================== */
-/*
-   Consolidates the former v2/v4/v6/v7/v8/v9/v10 patch stack.
-   The goal is the same visual result with fewer competing overrides.
-*/
-
-/* ---------- Light palette: cool grey glass ---------- */
 body.theme-light {
   --fakeblur: #dde1e5;
   --overlay-color: rgba(232, 235, 238, 0.74);
@@ -2633,7 +2239,6 @@ body.theme-light {
   --interactive-hover: rgba(222, 229, 234, 0.90);
 }
 
-/* ---------- Final auto backgrounds ---------- */
 body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
   background-image:
     radial-gradient(
@@ -2702,7 +2307,6 @@ body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tr
   filter: blur(var(--background-blur)) saturate(104%);
 }
 
-/* Match animation lists to the four active background layers. */
 @keyframes graphite-blue-bg-flow {
   0% {
     background-position: 0% 0%, 100% 10%, 70% 100%, center;
@@ -2733,7 +2337,6 @@ body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tr
   }
 }
 
-/* ---------- One continuous light workspace background ---------- */
 body.theme-light .workspace,
 body.theme-light .horizontal-main-container,
 body.theme-light .workspace-split,
@@ -2751,139 +2354,131 @@ body.theme-light .view-header,
 body.theme-light .view-header-title-container,
 body.theme-light .view-header-title,
 body.theme-light .nav-header {
-  background: transparent !important;
+  background: transparent;
 }
 
-/* The global pseudo-element already supplies blur/depth. Re-blurring these
-   strips creates visible seams and costs extra GPU time. */
 body.theme-light .workspace-tab-header-container,
 body.theme-light .view-header,
 body.theme-light .view-header-title-container,
 body.theme-light .nav-header,
 body.theme-light .workspace-sidedock-vault-profile {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
-/* Keep separators subtle without creating separate painted surfaces. */
 body.theme-light .workspace-split.mod-root > .workspace-tabs > .workspace-tab-header-container {
-  border-bottom-color: rgba(61, 112, 150, 0.10) !important;
-  box-shadow: 0 1px 0 rgba(65, 111, 144, 0.04) !important;
+  border-bottom-color: rgba(61, 112, 150, 0.10);
+  box-shadow: 0 1px 0 rgba(65, 111, 144, 0.04);
 }
 
 body.theme-light .workspace-split.mod-left-split .nav-header,
 body.theme-light .workspace-split.mod-right-split .nav-header,
 body.theme-light .workspace-sidedock-vault-profile {
-  border-color: rgba(61, 112, 150, 0.075) !important;
+  border-color: rgba(61, 112, 150, 0.075);
 }
 
-/* File/view title area matches dark mode: no lower separator. */
 body.theme-light .view-header,
 body.theme-light .view-header-title-container,
 body.theme-light .view-header-title {
-  border-bottom: 0 !important;
-  box-shadow: none !important;
+  border-bottom: 0;
+  box-shadow: none;
 }
 
-/* ---------- Workspace tabs ---------- */
 body.theme-light .workspace-split.mod-root > .workspace-tabs > .workspace-tab-header-container,
 body.theme-dark .workspace-split.mod-root > .workspace-tabs > .workspace-tab-header-container {
-  position: relative !important;
-  z-index: 5 !important;
-  visibility: visible !important;
-  opacity: 1 !important;
+  position: relative;
+  z-index: 5;
+  visibility: visible;
+  opacity: 1;
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header,
 body.theme-dark .workspace-split.mod-root .workspace-tab-header,
 body.theme-light .workspace-split.mod-root .workspace-tab-header-inner,
 body.theme-dark .workspace-split.mod-root .workspace-tab-header-inner {
-  visibility: visible !important;
+  visibility: visible;
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
-  opacity: 0.76 !important;
+  opacity: 0.76;
 }
 
 body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
-  opacity: 0.78 !important;
+  opacity: 0.78;
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover,
 body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover {
-  opacity: 1 !important;
+  opacity: 1;
 }
 
 body.theme-light .workspace-tab-header-container-inner,
 body.theme-light .workspace-tab-header-inner,
 body.theme-light .workspace-tab-header-inner-title,
 body.theme-light .workspace-tab-header-inner-icon {
-  color: #2c3e4b !important;
+  color: #2c3e4b;
 }
 
 body.theme-light .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-title,
 body.theme-light .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-icon {
-  color: #61707b !important;
+  color: #61707b;
 }
 
 body.theme-light .workspace-tab-header-container .clickable-icon,
 body.theme-light .workspace-tab-header-tab-list,
 body.theme-light .workspace-tab-header-new-tab {
-  color: #435664 !important;
+  color: #435664;
 }
 
 body.theme-light .workspace-tab-header-container .clickable-icon:hover,
 body.theme-light .workspace-tab-header-tab-list:hover,
 body.theme-light .workspace-tab-header-new-tab:hover {
-  background-color: rgba(55, 133, 190, 0.09) !important;
-  color: #176ca8 !important;
+  background-color: rgba(55, 133, 190, 0.09);
+  color: #176ca8;
 }
 
-/* Active tab: blue lower marker only; no white top sheen. */
 body.theme-light .workspace-tab-header.is-active,
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
   background: linear-gradient(
     180deg,
     rgba(223, 239, 250, 0.58),
     rgba(239, 247, 252, 0.36)
-  ) !important;
-  box-shadow: inset 0 -2px 0 rgba(45, 128, 190, 0.68) !important;
+  );
+  box-shadow: inset 0 -2px 0 rgba(45, 128, 190, 0.68);
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
-  color: #17384f !important;
+  color: #17384f;
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
-  color: hsl(205, 66%, 42%) !important;
+  color: hsl(205, 66%, 42%);
 }
 
-/* Active file: blue left marker only; no white top sheen. */
 body.theme-light .nav-file-title.is-active {
   background: linear-gradient(
     90deg,
     rgba(70, 145, 199, 0.15),
     rgba(90, 145, 183, 0.045)
-  ) !important;
-  box-shadow: inset 2px 0 0 rgba(45, 128, 190, 0.72) !important;
+  );
+  box-shadow: inset 2px 0 0 rgba(45, 128, 190, 0.72);
 }
 
-/* ---------- Code blocks ---------- */
 body.theme-dark .markdown-source-view.mod-cm6 .HyperMD-codeblock-bg,
 body.theme-light .markdown-source-view.mod-cm6 .HyperMD-codeblock-bg,
 body.theme-dark .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock,
 body.theme-light .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 body.theme-dark .markdown-source-view.mod-cm6 .HyperMD-codeblock-bg {
-  background-color: rgba(28, 53, 74, 0.38) !important;
+  background-color: rgba(28, 53, 74, 0.38);
 }
 
 body.theme-light .markdown-source-view.mod-cm6 .HyperMD-codeblock-bg {
-  background-color: rgba(226, 237, 245, 0.72) !important;
+  background-color: rgba(226, 237, 245, 0.72);
 }
 
 body.theme-dark .markdown-rendered pre {
@@ -2894,23 +2489,21 @@ body.theme-light .markdown-rendered pre {
   box-shadow: inset 0 0 0 1px rgba(82, 139, 181, 0.08);
 }
 
-/* ---------- Normal frameless titlebar ---------- */
-body.theme-light:not(:has(.modal.mod-settings)) .titlebar,
-body.theme-light:not(:has(.modal.mod-settings)) .titlebar-inner,
-body.theme-dark:not(:has(.modal.mod-settings)) .titlebar,
-body.theme-dark:not(:has(.modal.mod-settings)) .titlebar-inner,
-.is-hidden-frameless:not(.is-fullscreen).theme-light:not(:has(.modal.mod-settings)) .titlebar-button-container.mod-right,
-.is-hidden-frameless:not(.is-fullscreen).theme-dark:not(:has(.modal.mod-settings)) .titlebar-button-container.mod-right {
-  background: transparent !important;
+body.theme-light .titlebar,
+body.theme-light .titlebar-inner,
+body.theme-dark .titlebar,
+body.theme-dark .titlebar-inner,
+.is-hidden-frameless:not(.is-fullscreen).theme-light .titlebar-button-container.mod-right,
+.is-hidden-frameless:not(.is-fullscreen).theme-dark .titlebar-button-container.mod-right {
+  background: transparent;
 }
 
-body.is-focused.theme-light:not(:has(.modal.mod-settings)) .titlebar,
-body.is-focused.theme-dark:not(:has(.modal.mod-settings)) .titlebar {
-  --titlebar-background: transparent !important;
-  --titlebar-background-focused: transparent !important;
+body.is-focused.theme-light .titlebar,
+body.is-focused.theme-dark .titlebar {
+  --titlebar-background: transparent;
+  --titlebar-background-focused: transparent;
 }
 
-/* ---------- Settings: clean readable light surface ---------- */
 body.theme-light .modal.mod-settings {
   --text-normal: #1f2933;
   --text-muted: #66727d;
@@ -2923,7 +2516,7 @@ body.theme-light .modal.mod-settings {
 }
 
 body.theme-light .modal-container .modal.mod-settings {
-  background: #ffffff !important;
+  background: #ffffff;
   border-color: rgba(47, 83, 108, 0.14);
   box-shadow: 0 24px 80px rgba(42, 55, 67, 0.20);
 }
@@ -2936,8 +2529,8 @@ body.theme-light .modal.mod-settings .vertical-tab-header-container,
 body.theme-light .modal.mod-settings .vertical-tab-content,
 body.theme-light .modal.mod-settings .vertical-tab-content-container,
 body.theme-light .modal.mod-settings .modal-content {
-  background: #ffffff !important;
-  color: #1f2933 !important;
+  background: #ffffff;
+  color: #1f2933;
 }
 
 body.theme-light .modal.mod-settings .vertical-tab-header {
@@ -2963,151 +2556,29 @@ body.theme-light .modal.mod-settings input[type="password"],
 body.theme-light .modal.mod-settings input[type="number"],
 body.theme-light .modal.mod-settings select,
 body.theme-light .modal.mod-settings select.dropdown {
-  background-color: #f7f9fa !important;
+  background-color: #f7f9fa;
 }
 
 body.theme-light .modal.mod-settings .modal-title,
 body.theme-light .modal.mod-settings .modal-close-button,
 body.theme-light .modal.mod-settings .clickable-icon,
 body.theme-light .modal.mod-settings .vertical-tab-header .clickable-icon {
-  color: #263640 !important;
+  color: #263640;
 }
 
 body.theme-light .modal.mod-settings .modal-close-button:hover,
 body.theme-light .modal.mod-settings .modal-header .clickable-icon:hover {
-  background-color: rgba(47, 111, 159, 0.08) !important;
-  color: #176ca8 !important;
+  background-color: rgba(47, 111, 159, 0.08);
+  color: #176ca8;
 }
 
 body.theme-light .modal.mod-settings .modal-header svg,
 body.theme-light .modal.mod-settings .modal-close-button svg,
 body.theme-light .modal.mod-settings .vertical-tab-header svg {
-  color: currentColor !important;
-  stroke: currentColor !important;
+  color: currentColor;
+  stroke: currentColor;
 }
 
-/* ---------- App titlebar for Settings and Community Theme Browser ---------- */
-body.theme-light:has(.modal.mod-settings),
-body.theme-light:has(.modal.mod-community-theme) {
-  --titlebar-background: #e8eef2 !important;
-  --titlebar-background-focused: #e8eef2 !important;
-  --titlebar-text-color: #53616d !important;
-  --titlebar-text-color-focused: #26343f !important;
-}
-
-body.theme-light:has(.modal.mod-settings) .titlebar,
-body.theme-light:has(.modal.mod-community-theme) .titlebar,
-body.theme-light:has(.modal.mod-settings) .titlebar-inner,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-inner,
-body.theme-light:has(.modal.mod-settings) .titlebar-button-container,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container,
-body.theme-light:has(.modal.mod-settings) .titlebar-button-container.mod-right,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container.mod-right {
-  background: linear-gradient(
-    105deg,
-    rgba(246, 249, 251, 0.99) 0%,
-    rgba(220, 232, 240, 0.99) 48%,
-    rgba(236, 242, 246, 0.99) 100%
-  ) !important;
-  color: #26343f !important;
-  border-color: rgba(58, 79, 95, 0.12) !important;
-}
-
-body.theme-light:has(.modal.mod-settings) .titlebar-text,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-text {
-  color: #26343f !important;
-  opacity: 0.92 !important;
-}
-
-body.theme-light:has(.modal.mod-settings) .titlebar-button,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button,
-body.theme-light:has(.modal.mod-settings) .titlebar-button-container .clickable-icon,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon,
-body.theme-light:has(.modal.mod-settings) .titlebar-button svg,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button svg {
-  color: #435563 !important;
-  stroke: currentColor !important;
-}
-
-body.theme-light:has(.modal.mod-settings) .titlebar-button:hover,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button:hover,
-body.theme-light:has(.modal.mod-settings) .titlebar-button-container .clickable-icon:hover,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon:hover {
-  background-color: rgba(54, 118, 168, 0.09) !important;
-  color: #203746 !important;
-}
-
-body.theme-dark:has(.modal.mod-settings),
-body.theme-dark:has(.modal.mod-community-theme) {
-  --titlebar-background: #303943 !important;
-  --titlebar-background-focused: #35404b !important;
-  --titlebar-text-color: #b8c5cf !important;
-  --titlebar-text-color-focused: #eef4f8 !important;
-}
-
-body.theme-dark:has(.modal.mod-settings) .titlebar,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar,
-body.theme-dark:has(.modal.mod-settings) .titlebar-inner,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-inner,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button-container,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button-container.mod-right,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container.mod-right {
-  background: linear-gradient(
-    90deg,
-    rgba(55, 66, 77, 0.99) 0%,
-    rgba(44, 53, 63, 0.99) 52%,
-    rgba(50, 60, 70, 0.99) 100%
-  ) !important;
-  color: #eef4f8 !important;
-  border-color: rgba(130, 170, 202, 0.12) !important;
-}
-
-body.theme-dark:has(.modal.mod-settings) .titlebar-text,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-text {
-  color: #e3ecf2 !important;
-  opacity: 0.94 !important;
-}
-
-body.theme-dark:has(.modal.mod-settings) .titlebar-button,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button-container .clickable-icon,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button svg,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button svg {
-  color: #c3d0d9 !important;
-  stroke: currentColor !important;
-}
-
-body.theme-dark:has(.modal.mod-settings) .titlebar-button:hover,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button:hover,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button-container .clickable-icon:hover,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon:hover {
-  background-color: rgba(91, 154, 205, 0.14) !important;
-  color: #f3f8fb !important;
-}
-
-body.theme-light:has(.modal.mod-settings) .titlebar,
-body.theme-light:has(.modal.mod-community-theme) .titlebar,
-body.theme-dark:has(.modal.mod-settings) .titlebar,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar {
-  border-bottom-width: 1px !important;
-  border-bottom-style: solid !important;
-  box-shadow: 0 1px 8px rgba(15, 24, 32, 0.07) !important;
-}
-
-/* ========================================================================== */
-/* END FINAL CONSOLIDATED UI POLISH                                           */
-/* ========================================================================== */
-
-/* ========================================================================== */
-/* COMMUNITY THEME BROWSER — MATCH SETTINGS UI                               */
-/* ========================================================================== */
-
-/* The Community Themes browser is a separate modal (.mod-community-theme),
-   so it needs its own surface tokens instead of inheriting generic modal glass. */
-
-/* ===================== Light mode ===================== */
 body.theme-light .modal.mod-community-theme {
   --background-primary: #ffffff;
   --background-secondary: #f7f9fb;
@@ -3122,7 +2593,7 @@ body.theme-light .modal.mod-community-theme {
   --icon-color-hover: #1f6fa8;
   --modal-background: #ffffff;
 
-  background: #ffffff !important;
+  background: #ffffff;
   color: #1f2933;
   border-color: rgba(47, 83, 108, 0.14);
   box-shadow: 0 24px 80px rgba(42, 55, 67, 0.20);
@@ -3138,7 +2609,7 @@ body.theme-light .modal.mod-community-theme .community-modal-info,
 body.theme-light .modal.mod-community-theme .community-modal-details,
 body.theme-light .modal.mod-community-theme .community-modal-readme,
 body.theme-light .modal.mod-community-theme .community-modal-search-results-wrapper {
-  background: #ffffff !important;
+  background: #ffffff;
   color: #1f2933;
 }
 
@@ -3185,7 +2656,7 @@ body.theme-light .modal.mod-community-theme .community-item-screenshot {
 body.theme-light .modal.mod-community-theme input[type="text"],
 body.theme-light .modal.mod-community-theme input[type="search"],
 body.theme-light .modal.mod-community-theme .search-input-container input {
-  background-color: #f7f9fa !important;
+  background-color: #f7f9fa;
   color: #253746;
   box-shadow: inset 0 0 0 1px rgba(67, 128, 173, 0.14);
 }
@@ -3193,14 +2664,14 @@ body.theme-light .modal.mod-community-theme .search-input-container input {
 body.theme-light .modal.mod-community-theme input[type="text"]:hover,
 body.theme-light .modal.mod-community-theme input[type="search"]:hover,
 body.theme-light .modal.mod-community-theme .search-input-container input:hover {
-  background-color: #f1f6f9 !important;
+  background-color: #f1f6f9;
   box-shadow: inset 0 0 0 1px rgba(50, 122, 177, 0.22);
 }
 
 body.theme-light .modal.mod-community-theme input[type="text"]:focus,
 body.theme-light .modal.mod-community-theme input[type="search"]:focus,
 body.theme-light .modal.mod-community-theme .search-input-container input:focus {
-  background-color: #f7fafc !important;
+  background-color: #f7fafc;
   box-shadow:
     inset 0 0 0 1px rgba(40, 119, 179, 0.40),
     0 0 0 2px rgba(49, 132, 193, 0.075);
@@ -3218,13 +2689,13 @@ body.theme-light .modal.mod-community-theme button:not(.clickable-icon):hover {
 
 body.theme-light .modal.mod-community-theme .clickable-icon,
 body.theme-light .modal.mod-community-theme .modal-close-button {
-  color: #263640 !important;
+  color: #263640;
 }
 
 body.theme-light .modal.mod-community-theme .clickable-icon:hover,
 body.theme-light .modal.mod-community-theme .modal-close-button:hover {
-  background-color: rgba(47, 111, 159, 0.08) !important;
-  color: #176ca8 !important;
+  background-color: rgba(47, 111, 159, 0.08);
+  color: #176ca8;
 }
 
 body.theme-light .modal.mod-community-theme .community-item-badge {
@@ -3240,7 +2711,6 @@ body.theme-light .modal.mod-community-theme a:hover {
   color: hsl(203, 76%, 33%);
 }
 
-/* ===================== Dark mode ===================== */
 body.theme-dark .modal.mod-community-theme {
   --background-primary: #0f1821;
   --background-secondary: #131f2a;
@@ -3255,7 +2725,7 @@ body.theme-dark .modal.mod-community-theme {
   --icon-color-hover: rgba(130, 194, 239, 0.98);
   --modal-background: #0f1821;
 
-  background: #0f1821 !important;
+  background: #0f1821;
   color: rgba(225, 238, 248, 0.94);
   border-color: rgba(125, 180, 225, 0.14);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.40);
@@ -3271,7 +2741,7 @@ body.theme-dark .modal.mod-community-theme .community-modal-info,
 body.theme-dark .modal.mod-community-theme .community-modal-details,
 body.theme-dark .modal.mod-community-theme .community-modal-readme,
 body.theme-dark .modal.mod-community-theme .community-modal-search-results-wrapper {
-  background: #0f1821 !important;
+  background: #0f1821;
   color: rgba(225, 238, 248, 0.94);
 }
 
@@ -3318,7 +2788,7 @@ body.theme-dark .modal.mod-community-theme .community-item-screenshot {
 body.theme-dark .modal.mod-community-theme input[type="text"],
 body.theme-dark .modal.mod-community-theme input[type="search"],
 body.theme-dark .modal.mod-community-theme .search-input-container input {
-  background-color: #17232e !important;
+  background-color: #17232e;
   color: rgba(228, 239, 248, 0.96);
   box-shadow: inset 0 0 0 1px rgba(116, 176, 224, 0.13);
 }
@@ -3326,14 +2796,14 @@ body.theme-dark .modal.mod-community-theme .search-input-container input {
 body.theme-dark .modal.mod-community-theme input[type="text"]:hover,
 body.theme-dark .modal.mod-community-theme input[type="search"]:hover,
 body.theme-dark .modal.mod-community-theme .search-input-container input:hover {
-  background-color: #1a2936 !important;
+  background-color: #1a2936;
   box-shadow: inset 0 0 0 1px rgba(107, 180, 235, 0.22);
 }
 
 body.theme-dark .modal.mod-community-theme input[type="text"]:focus,
 body.theme-dark .modal.mod-community-theme input[type="search"]:focus,
 body.theme-dark .modal.mod-community-theme .search-input-container input:focus {
-  background-color: #1a2936 !important;
+  background-color: #1a2936;
   box-shadow:
     inset 0 0 0 1px rgba(103, 181, 238, 0.38),
     0 0 0 2px rgba(62, 137, 197, 0.075);
@@ -3351,13 +2821,13 @@ body.theme-dark .modal.mod-community-theme button:not(.clickable-icon):hover {
 
 body.theme-dark .modal.mod-community-theme .clickable-icon,
 body.theme-dark .modal.mod-community-theme .modal-close-button {
-  color: rgba(205, 221, 233, 0.92) !important;
+  color: rgba(205, 221, 233, 0.92);
 }
 
 body.theme-dark .modal.mod-community-theme .clickable-icon:hover,
 body.theme-dark .modal.mod-community-theme .modal-close-button:hover {
-  background-color: rgba(91, 154, 205, 0.14) !important;
-  color: #f3f8fb !important;
+  background-color: rgba(91, 154, 205, 0.14);
+  color: #f3f8fb;
 }
 
 body.theme-dark .modal.mod-community-theme .community-item-badge {
@@ -3373,7 +2843,6 @@ body.theme-dark .modal.mod-community-theme a:hover {
   color: hsl(202, 82%, 75%);
 }
 
-/* Keep the theme browser hierarchy clean: no bright top glare on cards/panels. */
 body.theme-light .modal.mod-community-theme .community-item,
 body.theme-dark .modal.mod-community-theme .community-item,
 body.theme-light .modal.mod-community-theme .community-modal-sidebar,
@@ -3382,16 +2851,6 @@ body.theme-light .modal.mod-community-theme .community-modal-details,
 body.theme-dark .modal.mod-community-theme .community-modal-details {
   text-shadow: none;
 }
-
-/* ========================================================================== */
-/* END COMMUNITY THEME BROWSER                                                */
-/* ========================================================================== */
-
-/* ========================================================================== */
-/* COMMUNITY THEME BROWSER — EXACT SETTINGS COMPONENT MATCH                   */
-/* ========================================================================== */
-
-/* ===================== Switches: exactly the same as Settings ===================== */
 
 body.theme-light .modal.mod-community-theme .checkbox-container {
   background-color: rgba(175, 191, 203, 0.70);
@@ -3441,66 +2900,56 @@ body.theme-dark .modal.mod-community-theme .checkbox-container::after {
   background-color: rgba(241, 247, 251, 0.96);
 }
 
-/* ===================== Modal header: exactly the same as Settings ===================== */
-
 body.theme-light .modal.mod-community-theme .modal-header {
-  background: #ffffff !important;
-  color: #1f2933 !important;
+  background: #ffffff;
+  color: #1f2933;
   border-bottom: 1px solid rgba(53, 78, 96, 0.10);
 }
 
 body.theme-light .modal.mod-community-theme .modal-title,
 body.theme-light .modal.mod-community-theme .modal-close-button,
 body.theme-light .modal.mod-community-theme .modal-header .clickable-icon {
-  color: #263640 !important;
+  color: #263640;
 }
 
 body.theme-light .modal.mod-community-theme .modal-close-button:hover,
 body.theme-light .modal.mod-community-theme .modal-header .clickable-icon:hover {
-  background-color: rgba(47, 111, 159, 0.08) !important;
-  color: #176ca8 !important;
+  background-color: rgba(47, 111, 159, 0.08);
+  color: #176ca8;
 }
 
 body.theme-light .modal.mod-community-theme .modal-header svg,
 body.theme-light .modal.mod-community-theme .modal-close-button svg {
-  color: currentColor !important;
-  stroke: currentColor !important;
+  color: currentColor;
+  stroke: currentColor;
 }
 
 body.theme-dark .modal.mod-community-theme .modal-header {
-  background: #0f1821 !important;
-  color: rgba(225, 238, 248, 0.94) !important;
+  background: #0f1821;
+  color: rgba(225, 238, 248, 0.94);
   border-bottom: 1px solid rgba(115, 170, 215, 0.09);
 }
 
 body.theme-dark .modal.mod-community-theme .modal-title,
 body.theme-dark .modal.mod-community-theme .modal-close-button,
 body.theme-dark .modal.mod-community-theme .modal-header .clickable-icon {
-  color: rgba(205, 221, 233, 0.92) !important;
+  color: rgba(205, 221, 233, 0.92);
 }
 
 body.theme-dark .modal.mod-community-theme .modal-close-button:hover,
 body.theme-dark .modal.mod-community-theme .modal-header .clickable-icon:hover {
-  background-color: rgba(91, 154, 205, 0.14) !important;
-  color: #f3f8fb !important;
+  background-color: rgba(91, 154, 205, 0.14);
+  color: #f3f8fb;
 }
 
 body.theme-dark .modal.mod-community-theme .modal-header svg,
 body.theme-dark .modal.mod-community-theme .modal-close-button svg {
-  color: currentColor !important;
-  stroke: currentColor !important;
+  color: currentColor;
+  stroke: currentColor;
 }
 
-/* ========================================================================== */
-/* END COMMUNITY THEME BROWSER COMPONENT MATCH                               */
-/* ========================================================================== */
-/* ========================================================================== */
-/* LIGHT GRAPH — SOFTER CONNECTIONS                                           */
-/* Keeps graph links readable without harsh black contrast in light mode.      */
-/* ========================================================================== */
-
 body.theme-light {
-  --graph-line: rgba(56, 76, 92, 0.42) !important;
+  --graph-line: rgba(56, 76, 92, 0.42);
 }
 
 body.theme-light .workspace-leaf-content[data-type="graph"],
@@ -3508,16 +2957,8 @@ body.theme-light .workspace-leaf-content[data-type="localgraph"],
 body.theme-light .graph-view,
 body.theme-light .graph-renderer,
 body.theme-light .graph-view-container {
-  --graph-line: rgba(56, 76, 92, 0.42) !important;
+  --graph-line: rgba(56, 76, 92, 0.42);
 }
-
-/* ========================================================================== */
-/* END LIGHT GRAPH SOFT CONTRAST                                             */
-/* ========================================================================== */
-
-/* ========================================================================== */
-/* OPAQUE MODALS AND POPOVERS                                                 */
-/* ========================================================================== */
 
 body.theme-light {
   --opaque-modal-bg: #eef3f6;
@@ -3541,32 +2982,28 @@ body.theme-light .suggestion-container,
 body.theme-dark .suggestion-container,
 body.theme-light .formula-editor .cm-tooltip.cm-tooltip-autocomplete,
 body.theme-dark .formula-editor .cm-tooltip.cm-tooltip-autocomplete {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  background-color: var(--opaque-modal-bg) !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: var(--opaque-modal-bg);
   --modal-background: var(--opaque-modal-bg);
   --settings-background: var(--opaque-modal-bg);
 }
 
 body.theme-light .popover.hover-popover .markdown-preview-view,
 body.theme-dark .popover.hover-popover .markdown-preview-view {
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  background-color: var(--opaque-popover-bg) !important;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background-color: var(--opaque-popover-bg);
 }
 
 body.theme-light .modal.mod-settings,
 body.theme-light .modal.mod-community-theme {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
+  background: #ffffff;
+  background-color: #ffffff;
 }
 
 body.theme-dark .modal.mod-settings,
 body.theme-dark .modal.mod-community-theme {
-  background: #0f1821 !important;
-  background-color: #0f1821 !important;
+  background: #0f1821;
+  background-color: #0f1821;
 }
-
-/* ========================================================================== */
-/* END OPAQUE MODALS AND POPOVERS                                             */
-/* ========================================================================== */
