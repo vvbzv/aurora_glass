@@ -1,5 +1,7 @@
 # Aurora Glass
 
+![Aurora Glass preview](screenshot.png)
+
 Aurora Glass is a graphite-blue glass theme for Obsidian, customized on top of
 Oczko24's Obsidian Transparent theme.
 
@@ -16,9 +18,9 @@ Repository: https://github.com/OtmiVi/aurora_glass
 
 ## Install
 
-1. Put this folder in `.obsidian/themes/Aurora Glass`.
-2. In Obsidian, open `Settings -> Appearance -> Themes`.
-3. Select `Aurora Glass`.
+1. In Obsidian, open `Settings -> Appearance -> Themes`.
+2. Click `Manage`, search for `Aurora Glass`, then click `Install and use`.
+3. If it is already installed, select `Aurora Glass` from the theme dropdown.
 
 ## Credits
 
