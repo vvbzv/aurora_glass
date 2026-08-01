@@ -1,6 +1,6 @@
 /*
-YURA GRAPHITE GLASS
-Customized and assembled by Yura.
+OTMIVI AURORA GLASS
+Customized and assembled by OtmiVi.
 
 Based on “Obsidian Transparent” by Oczko24:
 https://github.com/Oczko24/Obsidian-transparent
@@ -11,29 +11,22 @@ settings and community-theme-browser styling were customized for this edition.
 */
 
 
-/* Pluginy, pod które został napisany kod aby naprawić ich wyświetalnie:
-
-
-- Style Settings
-- Make.md
-- MySnippets
-- Day Planner
-- Remotely Save
-- [**Enchanted Animations**](https://github.com/Oczko24/Enchanted-Animations)
-
+/* Compatibility fixes are included for:
+   Style Settings, Make.md, MySnippets, Day Planner, Remotely Save,
+   and Enchanted Animations.
 */
 /* ========= style settings plugin support ========== */
 
 /* @settings
 
-name: Yura Graphite Glass
-id: yura-graphite-glass
+name: OtmiVi Aurora Glass
+id: otmivi-aurora-glass
 settings:
     -
         id: info-section
-        title: "✨ Yura Graphite Glass"
+        title: "✨ OtmiVi Aurora Glass"
         description: |
-            Custom graphite-blue glass edition assembled by **Yura**.
+            Custom graphite-blue glass edition assembled by **OtmiVi**.
 
             Built on top of **Obsidian Transparent** by Oczko24. The original project and attribution are preserved below.
 
@@ -305,10 +298,7 @@ settings:
         type: class-toggle
 */
 /* ===================== Style Settings UI Premium Styling ===================== */
-
-
-
-div.setting-item.setting-item-heading.style-settings-heading[data-id="yura-graphite-glass"] .setting-item-info .setting-item-name {
+div.setting-item.setting-item-heading.style-settings-heading[data-id="otmivi-aurora-glass"] .setting-item-info .setting-item-name {
   color: var(--interactive-accent);
 }
 
@@ -321,9 +311,9 @@ div.setting-item[data-id="info-section"] {
 }
 
 body:not(.enchanted-animations-present) .style-settings-container {
-  padding-bottom: 0px;
+  padding-bottom: 0;
   transform-origin: top center;
-  animation: st-open 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: st-open 0.4s var(--ease-out-smooth) forwards;
 }
 
 @keyframes st-open {
@@ -362,7 +352,12 @@ body:not(.enchanted-animations-present) .style-settings-container {
   --background-blur: 80px;
   --ui-blur: 30px;
   --mobile-sidebar-min-width: 100vw;
-  /* there is background */
+
+  --ease-out-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --frosted-ui-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  --transparent-border: 1px solid var(--tr);
 }
 
 /* ===================== Theme Presets ===================== */
@@ -399,7 +394,7 @@ body.preset-orange svg.canvas-background {
 body {
   --background-primary: var(--tr);
   --background-secondary: var(--tr);
-  --divider-width: 0px;
+  --divider-width: 0;
   --divider-color: var(--tr);
   --background-modifier-border: var(--tr);
   --input-radius: 5px;
@@ -445,12 +440,8 @@ body .tooltip.mod-left {
   backface-visibility: hidden;
 }
 
-/* ===================== Performance Overrides (Scrollers) ===================== */
-.cm-scroller, .markdown-preview-view {
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
-}
+/* Large scrollers stay on the browser's normal compositor path.
+   Permanent will-change/translateZ here costs more memory than it saves. */
 
 /* 
    Multi-select duplicate animation
@@ -719,19 +710,23 @@ body.is-focused .workspace-tab-header-container .workspace-tab-header {
   background-color: var(--tr);
 }
 
-.modal {
+.modal,
+.theme-dark .menu,
+.theme-light .menu,
+body.theme-light .prompt,
+body.theme-dark .prompt {
   -webkit-backdrop-filter: blur(var(--ui-blur));
   backdrop-filter: blur(var(--ui-blur));
   transform: translateZ(0);
-  will-change: transform, opacity;
   backface-visibility: hidden;
-  /* GPU acceleration */
   contain: layout style paint;
-  border: 1px solid #00000000;
+  border: var(--transparent-border);
   background-color: var(--overlay-color);
+}
+
+.modal {
   --settings-background: var(--overlay-color);
   --modal-background: var(--overlay-color);
-  /* I think this is the best implementation */
   position: relative;
   z-index: 1000;
 }
@@ -745,29 +740,9 @@ is-phone
 is-tablet
 is-mobile - tablet and phone
 */
-.is-phone .modal {
-  -webkit-backdrop-filter: blur(var(--ui-blur));
-  backdrop-filter: blur(var(--ui-blur));
-  /* brightness at 1 is as if it wasn't there at all */
-}
-
 .modal-bg {
   width: 100%;
   background-color: var(--tr);
-}
-
-.theme-dark .menu,
-/* Specificity hack to override default Obsidian background */
-.theme-light .menu {
-  -webkit-backdrop-filter: blur(var(--ui-blur));
-  backdrop-filter: blur(var(--ui-blur));
-  transform: translateZ(0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  /* GPU acceleration */
-  contain: layout style paint;
-  background-color: var(--overlay-color);
-  border: 1px solid #00000000;
 }
 
 hr {
@@ -779,25 +754,12 @@ hr {
 
 
 .menu-separator {
-  border-bottom: 0px solid;
+  border-bottom: 0 solid;
   /* right mouse button */
 }
 
-body.theme-light .prompt,
-body.theme-dark .prompt {
-  -webkit-backdrop-filter: blur(var(--ui-blur));
-  backdrop-filter: blur(var(--ui-blur));
-  transform: translateZ(0);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  /* GPU acceleration */
-  contain: layout style paint;
-  border: 1px solid #00000000;
-  background-color: var(--overlay-color);
-}
-
 body:not(.is-mobile):not(.enchanted-animations-present) .prompt {
-  animation: promptSlideUp var(--anim-duration-moderate) cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: promptSlideUp var(--anim-duration-moderate) var(--ease-out-soft);
 }
 
 @keyframes promptSlideUp {
@@ -817,11 +779,11 @@ body:not(.is-mobile):not(.enchanted-animations-present) .prompt {
 /* 750ms suits better here, but will be refined in a future update */
 body.is-phone:not(.enchanted-animations-present) .menu {
   /* phone only — on tablet this animation looks poor */
-  animation: tr-mobile-slide-up var(--anim-duration-slow) cubic-bezier(0.16, 1, 0.3, 1);
+  animation: tr-mobile-slide-up var(--anim-duration-slow) var(--ease-out-smooth);
 }
 
 body.is-mobile:not(.enchanted-animations-present) .prompt {
-  animation: tr-mobile-slide-up var(--anim-duration-slow) cubic-bezier(0.16, 1, 0.3, 1);
+  animation: tr-mobile-slide-up var(--anim-duration-slow) var(--ease-out-smooth);
 }
 
 /* ==================== Settings mobile bypass ==================== */
@@ -840,12 +802,12 @@ body.is-mobile:not(.enchanted-animations-present) .prompt {
 
 body.is-phone:not(.enchanted-animations-present) .modal.mod-settings .vertical-tab-content-container {
   --slide-start: 30px;
-  animation: tr-settings-slide var(--anim-duration-slow) cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: tr-settings-slide var(--anim-duration-slow) var(--ease-out-smooth) both;
 }
 
 body.is-phone:not(.enchanted-animations-present) .modal.mod-settings .vertical-tab-header {
   --slide-start: -30px;
-  animation: tr-settings-slide var(--anim-duration-slow) cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: tr-settings-slide var(--anim-duration-slow) var(--ease-out-smooth) both;
 }
 
 /* end ==================== Settings mobile drill-down ==================== */
@@ -898,17 +860,20 @@ input[type="range"] {
 
 .suggestion-container.mod-search-suggestion {
   background-color: var(--tr);
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
   border-color: var(--tr);
   max-height: 600px;
 }
+
 /* Button styling */
-button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-collapse-button):not(.nn-mobile-toolbar-button):not(.copy-code-button) { /* "nn" prefix = Notebook Navigator plugin integration */
+button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-collapse-button):not(.nn-mobile-toolbar-button):not(.copy-code-button) {
+  /* "nn" prefix = Notebook Navigator plugin integration */
   background-color: var(--color-accent);
   box-shadow: none;
   color: var(--text-on-accent);
 }
+
 /* right click on top right centered down arrow adjustments */
 .menu-scroll {
   display: inline;
@@ -958,10 +923,10 @@ select.dropdown option {
 
 body:not(.enchanted-animations-present) .notice {
   background-color: var(--tr);
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
   color: var(--kolorboku);
-  animation: tr-notice-in-desktop var(--anim-duration-slow) cubic-bezier(0.16, 1, 0.3, 1);
+  animation: tr-notice-in-desktop var(--anim-duration-slow) var(--ease-out-smooth);
 }
 
 /* ==================== Notice animation ==================== */
@@ -1014,7 +979,7 @@ body.is-phone:not(.enchanted-animations-present) .notice {
 
 .graph-controls:not(.is-close) {
   box-shadow: none;
-  border: 0px solid var(--tr);
+  border: 0 solid var(--tr);
 }
 
 /* Table border styling */
@@ -1069,7 +1034,7 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .canvas-control-item {
-  background-color: #00000000;
+  background-color: var(--tr);
   border-radius: var(--canvas-controls-radius);
 }
 
@@ -1090,8 +1055,8 @@ body.hide-canvas-dots svg.canvas-background {
 /* hover on links */
 .popover.hover-popover .markdown-preview-view {
   background-color: var(--tr);
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
 }
 
 .file-embed {
@@ -1139,7 +1104,7 @@ body.hide-canvas-dots svg.canvas-background {
 /* bases */
 /* there's definitely a lot to do with fake blur here because when elements overlap each other you get shades of black instead of the intended theme aesthetic */
 .bases-table-container {
-  background: #00000000;
+  background: var(--tr);
 }
 
 /* these 3 things are for the table in bases */
@@ -1162,16 +1127,16 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .popover.hover-popover.is-editing {
-  outline: 0px var(--tr);
+  outline: 0 var(--tr);
   border-color: var(--tr);
 }
 
 .bases-query-container .filter-row .filter-operator {
-  border-width: 0 0px;
+  border-width: 0;
 }
 
 .bases-query-container .filter-expression {
-  --metadata-property-box-shadow: 0 0 0 0px var(--tr);
+  --metadata-property-box-shadow: 0 0 0 0 var(--tr);
 }
 
 .popover,
@@ -1181,8 +1146,8 @@ body.hide-canvas-dots svg.canvas-background {
 .combobox .search-input-container,
 .mk-menu-container {
   background-color: var(--tr);
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
 }
 
 
@@ -1190,7 +1155,7 @@ body.hide-canvas-dots svg.canvas-background {
 .is-phone .menu-group .menu-item.is-label {
   /* better context menu label on folders */
   padding: 6px 16px;
-  margin: 8px 12px 8px 12px;
+  margin: 8px 12px;
   color: var(--text-normal);
 }
 
@@ -1205,20 +1170,20 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .mobile-tab-preview:before {
-  box-shadow: 0 0px 30px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 30px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* */
 
 .is-phone .workspace-drawer {
-  background-color: #00000000;
+  background-color: var(--tr);
   z-index: 15;
 }
 
 .mobile-toolbar-options-list {
   background-color: var(--tr);
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
   border-color: var(--tr);
 }
 
@@ -1229,8 +1194,8 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .is-mobile .mod-raised {
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
 }
 
 .is-phone .workspace-split {
@@ -1319,17 +1284,17 @@ body.show-scrollbars ::-webkit-scrollbar-thumb {
   position: absolute;
   background-color: var(--tr);
   transition:
-    opacity var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1),
-    margin-bottom var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1),
-    transform var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1);
+    opacity var(--anim-duration-moderate) var(--ease-out-smooth),
+    margin-bottom var(--anim-duration-moderate) var(--ease-out-smooth),
+    transform var(--anim-duration-moderate) var(--ease-out-smooth);
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
 
 .is-phone .view-header {
   transition:
-    opacity var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1),
-    transform var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1);
+    opacity var(--anim-duration-moderate) var(--ease-out-smooth),
+    transform var(--anim-duration-moderate) var(--ease-out-smooth);
   will-change: transform, opacity;
   backface-visibility: hidden;
 }
@@ -1348,10 +1313,9 @@ body.is-mobile.disable-drawer-dimming .clickable-icon.workspace-drawer-header-ic
 
 /* blur + dimming when sliding sidebars is disabled */
 .workspace-drawer-inner {
-  -webkit-backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  backdrop-filter: brightness(var(--brightness)) blur(var(--ui-blur));
-  will-change: width, filter, backdrop-filter;
-  transition: width cubic-bezier(0.16, 1, 0.3, 1) var(--anim-duration-slow);
+  -webkit-backdrop-filter: var(--frosted-ui-filter);
+  backdrop-filter: var(--frosted-ui-filter);
+  transition: width var(--ease-out-smooth) var(--anim-duration-slow);
 }
 
 body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
@@ -1367,9 +1331,9 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
 
 /* background dimming behind drawer when sliding sidebars is disabled */
 .workspace-drawer-backdrop {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: var(--tr);
   /* was 0.5 */
-  transition: opacity cubic-bezier(0.16, 1, 0.3, 1) var(--anim-duration-slow);
+  transition: opacity var(--ease-out-smooth) var(--anim-duration-slow);
 }
 
 .is-sliding .workspace-drawer-backdrop {
@@ -1378,13 +1342,13 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
 
 .is-mobile .suggestion-container {
   border-radius: var(--radius-l);
-  background-color: #00000000;
+  background-color: var(--tr);
 }
 
 .popover,
 .suggestion-container,
 .cm-tooltip.cm-tooltip-autocomplete {
-  border: 0px;
+  border: 0;
 }
 
 /* community themes fix top right X button 
@@ -1548,7 +1512,7 @@ body.animate-note-open .workspace-split.mod-root .workspace-leaf-content[data-ty
 /* mod-active re-fires animation when switching note from the left file panel */
 body.animate-note-open:not(.enchanted-animations-present) .workspace-leaf.mod-active .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-reading-view,
 body.animate-note-open:not(.enchanted-animations-present) .workspace-leaf.mod-active .workspace-leaf-content[data-type="markdown"]>.view-content>.markdown-source-view {
-  animation: tr-note-fade-in var(--anim-duration-moderate) cubic-bezier(0.16, 1, 0.3, 1);
+  animation: tr-note-fade-in var(--anim-duration-moderate) var(--ease-out-smooth);
 }
 
 /* ===================== Animate Note Opening ===================== */
@@ -1616,7 +1580,7 @@ body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-pr
 body:not(.disable-header-animations):not(.enchanted-animations-present) .markdown-source-view.mod-cm6 .cm-line.HyperMD-header .cm-formatting-header {
   position: absolute;
   top: auto;
-  animation: materialPopHeader 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: materialPopHeader 0.4s var(--ease-pop) forwards;
 }
 
 @keyframes materialPopHeader {
@@ -1640,34 +1604,32 @@ body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.Hype
 
 /* line gains focus */
 body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header {
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: transform 0.5s var(--ease-pop);
 }
 
 /* Hardcoded indent per header level — may need revisiting if header font sizes change */
-body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active {
-  &.HyperMD-header-1 {
-    transform: translateX(20px);
-  }
+body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-1 {
+  transform: translateX(20px);
+}
 
-  &.HyperMD-header-2 {
-    transform: translateX(30px);
-  }
+body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-2 {
+  transform: translateX(30px);
+}
 
-  &.HyperMD-header-3 {
-    transform: translateX(40px);
-  }
+body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-3 {
+  transform: translateX(40px);
+}
 
-  &.HyperMD-header-4 {
-    transform: translateX(50px);
-  }
+body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-4 {
+  transform: translateX(50px);
+}
 
-  &.HyperMD-header-5 {
-    transform: translateX(60px);
-  }
+body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-5 {
+  transform: translateX(60px);
+}
 
-  &.HyperMD-header-6 {
-    transform: translateX(70px);
-  }
+body:not(.disable-header-animations) .markdown-source-view.mod-cm6 .cm-line.cm-active.HyperMD-header-6 {
+  transform: translateX(70px);
 }
 
 /* ===================== Inline Formatting Animations ===================== */
@@ -1696,7 +1658,7 @@ body:not(.disable-formatting-animations):not(.enchanted-animations-present) .mar
   line-height: 0;
   padding-block: 0;
   /* top down */
-  will-change: margin-inline, transform, opacity;
+  will-change: transform, opacity;
   backface-visibility: hidden;
   animation: premiumHorizontalPush 0.3s cubic-bezier(0.25, 1, 0.5, 1.05) forwards;
 }
@@ -1718,7 +1680,7 @@ body:not(.disable-formatting-animations):not(.enchanted-animations-present) .mar
 /* Smooth transition on checkbox scale */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"],
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox {
-  transition: transform calc(var(--animationspeed) * 0.5) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform calc(var(--animationspeed) * 0.5) var(--ease-out-soft);
 }
 
 /* Press-down squish */
@@ -1730,7 +1692,7 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
 /* Pop animation when checked */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]:checked,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox:checked {
-  animation: tr-checkbox-pop calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: tr-checkbox-pop calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
 }
 
 @keyframes tr-checkbox-pop {
@@ -1742,14 +1704,15 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
 /* Checkmark icon transition */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]::after,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox::after {
-  transition: transform calc(var(--animationspeed) * 0.5) cubic-bezier(0.2, 0.8, 0.2, 1),
-              opacity calc(var(--animationspeed) * 0.5) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    transform calc(var(--animationspeed) * 0.5) var(--ease-out-soft),
+    opacity calc(var(--animationspeed) * 0.5) var(--ease-out-soft);
 }
 
 /* Checkmark pop on check */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) input[type="checkbox"]:checked::after,
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item-checkbox:checked::after {
-  animation: tr-checkmark-pop calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation: tr-checkmark-pop calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
   transform: scale(1);
   opacity: 1;
 }
@@ -1768,9 +1731,10 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-i
 
 /* Strike-through animation for task list items (Reading View) */
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .task-list-item {
-  transition: opacity calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1),
-              color calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1),
-              text-decoration-color calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    opacity calc(var(--animationspeed) * 0.8) var(--ease-out-soft),
+    color calc(var(--animationspeed) * 0.8) var(--ease-out-soft),
+    text-decoration-color calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
   text-decoration-line: line-through;
   text-decoration-color: transparent;
 }
@@ -1795,8 +1759,9 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-so
   background-position: left center;
   background-size: 0% 1.5px;
   background-repeat: no-repeat;
-  transition: background-size calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1),
-              color calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition:
+    background-size calc(var(--animationspeed) * 0.8) var(--ease-out-soft),
+    color calc(var(--animationspeed) * 0.8) var(--ease-out-soft);
 }
 
 body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task=" "]) span:not(.cm-formatting):not(.cm-widgetBuffer):not(.task-list-label):not(.cm-hmd-list-indent):not(.cm-indent) {
@@ -1821,7 +1786,7 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .cm-striketh
   height: 1px;
   background-color: currentColor;
   transform-origin: left center;
-  animation: tr-strikethrough-anim calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: tr-strikethrough-anim calc(var(--animationspeed) * 0.8) var(--ease-out-soft) forwards;
 }
 
 /* Reading mode strike-through */
@@ -1842,7 +1807,7 @@ body:not(.ea-checkbox-animations):not(.disable-checkbox-animations) .markdown-pr
   height: 1.5px;
   background-color: currentColor;
   transform-origin: left center;
-  animation: tr-strikethrough-anim calc(var(--animationspeed) * 0.8) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: tr-strikethrough-anim calc(var(--animationspeed) * 0.8) var(--ease-out-soft) forwards;
 }
 
 @keyframes tr-strikethrough-anim {
@@ -1864,7 +1829,7 @@ body.is-ios .app-container .view-header {
 
 /* ========================================================================== */
 /* CUSTOM GRAPHITE BLUE GLASS OVERRIDES                                       */
-/* Customized by Yura on top of Oczko24 / Obsidian Transparent, while       */
+/* Customized by OtmiVi on top of Oczko24 / Obsidian Transparent, while     */
 /* preserving its Style Settings, animations, mobile fixes and integrations.  */
 /* ========================================================================== */
 
@@ -3368,8 +3333,9 @@ body.theme-light .modal.mod-settings .vertical-tab-header svg {
   stroke: currentColor !important;
 }
 
-/* ---------- Settings titlebar ---------- */
-body.theme-light:has(.modal.mod-settings) {
+/* ---------- App titlebar for Settings and Community Theme Browser ---------- */
+body.theme-light:has(.modal.mod-settings),
+body.theme-light:has(.modal.mod-community-theme) {
   --titlebar-background: #e8eef2 !important;
   --titlebar-background-focused: #e8eef2 !important;
   --titlebar-text-color: #53616d !important;
@@ -3377,9 +3343,13 @@ body.theme-light:has(.modal.mod-settings) {
 }
 
 body.theme-light:has(.modal.mod-settings) .titlebar,
+body.theme-light:has(.modal.mod-community-theme) .titlebar,
 body.theme-light:has(.modal.mod-settings) .titlebar-inner,
+body.theme-light:has(.modal.mod-community-theme) .titlebar-inner,
 body.theme-light:has(.modal.mod-settings) .titlebar-button-container,
-body.theme-light:has(.modal.mod-settings) .titlebar-button-container.mod-right {
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container,
+body.theme-light:has(.modal.mod-settings) .titlebar-button-container.mod-right,
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container.mod-right {
   background: linear-gradient(
     105deg,
     rgba(246, 249, 251, 0.99) 0%,
@@ -3390,25 +3360,32 @@ body.theme-light:has(.modal.mod-settings) .titlebar-button-container.mod-right {
   border-color: rgba(58, 79, 95, 0.12) !important;
 }
 
-body.theme-light:has(.modal.mod-settings) .titlebar-text {
+body.theme-light:has(.modal.mod-settings) .titlebar-text,
+body.theme-light:has(.modal.mod-community-theme) .titlebar-text {
   color: #26343f !important;
   opacity: 0.92 !important;
 }
 
 body.theme-light:has(.modal.mod-settings) .titlebar-button,
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button,
 body.theme-light:has(.modal.mod-settings) .titlebar-button-container .clickable-icon,
-body.theme-light:has(.modal.mod-settings) .titlebar-button svg {
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon,
+body.theme-light:has(.modal.mod-settings) .titlebar-button svg,
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button svg {
   color: #435563 !important;
   stroke: currentColor !important;
 }
 
 body.theme-light:has(.modal.mod-settings) .titlebar-button:hover,
-body.theme-light:has(.modal.mod-settings) .titlebar-button-container .clickable-icon:hover {
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button:hover,
+body.theme-light:has(.modal.mod-settings) .titlebar-button-container .clickable-icon:hover,
+body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon:hover {
   background-color: rgba(54, 118, 168, 0.09) !important;
   color: #203746 !important;
 }
 
-body.theme-dark:has(.modal.mod-settings) {
+body.theme-dark:has(.modal.mod-settings),
+body.theme-dark:has(.modal.mod-community-theme) {
   --titlebar-background: #303943 !important;
   --titlebar-background-focused: #35404b !important;
   --titlebar-text-color: #b8c5cf !important;
@@ -3416,9 +3393,13 @@ body.theme-dark:has(.modal.mod-settings) {
 }
 
 body.theme-dark:has(.modal.mod-settings) .titlebar,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar,
 body.theme-dark:has(.modal.mod-settings) .titlebar-inner,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-inner,
 body.theme-dark:has(.modal.mod-settings) .titlebar-button-container,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button-container.mod-right {
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container,
+body.theme-dark:has(.modal.mod-settings) .titlebar-button-container.mod-right,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container.mod-right {
   background: linear-gradient(
     90deg,
     rgba(55, 66, 77, 0.99) 0%,
@@ -3429,26 +3410,34 @@ body.theme-dark:has(.modal.mod-settings) .titlebar-button-container.mod-right {
   border-color: rgba(130, 170, 202, 0.12) !important;
 }
 
-body.theme-dark:has(.modal.mod-settings) .titlebar-text {
+body.theme-dark:has(.modal.mod-settings) .titlebar-text,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-text {
   color: #e3ecf2 !important;
   opacity: 0.94 !important;
 }
 
 body.theme-dark:has(.modal.mod-settings) .titlebar-button,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button,
 body.theme-dark:has(.modal.mod-settings) .titlebar-button-container .clickable-icon,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button svg {
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon,
+body.theme-dark:has(.modal.mod-settings) .titlebar-button svg,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button svg {
   color: #c3d0d9 !important;
   stroke: currentColor !important;
 }
 
 body.theme-dark:has(.modal.mod-settings) .titlebar-button:hover,
-body.theme-dark:has(.modal.mod-settings) .titlebar-button-container .clickable-icon:hover {
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button:hover,
+body.theme-dark:has(.modal.mod-settings) .titlebar-button-container .clickable-icon:hover,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon:hover {
   background-color: rgba(91, 154, 205, 0.14) !important;
   color: #f3f8fb !important;
 }
 
 body.theme-light:has(.modal.mod-settings) .titlebar,
-body.theme-dark:has(.modal.mod-settings) .titlebar {
+body.theme-light:has(.modal.mod-community-theme) .titlebar,
+body.theme-dark:has(.modal.mod-settings) .titlebar,
+body.theme-dark:has(.modal.mod-community-theme) .titlebar {
   border-bottom-width: 1px !important;
   border-bottom-style: solid !important;
   box-shadow: 0 1px 8px rgba(15, 24, 32, 0.07) !important;
@@ -3847,93 +3836,6 @@ body.theme-dark .modal.mod-community-theme .modal-header svg,
 body.theme-dark .modal.mod-community-theme .modal-close-button svg {
   color: currentColor !important;
   stroke: currentColor !important;
-}
-
-/* ===================== App titlebar: exact Settings titlebar ===================== */
-
-body.theme-light:has(.modal.mod-community-theme) {
-  --titlebar-background: #e8eef2 !important;
-  --titlebar-background-focused: #e8eef2 !important;
-  --titlebar-text-color: #53616d !important;
-  --titlebar-text-color-focused: #26343f !important;
-}
-
-body.theme-light:has(.modal.mod-community-theme) .titlebar,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-inner,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container.mod-right {
-  background: linear-gradient(
-    105deg,
-    rgba(246, 249, 251, 0.99) 0%,
-    rgba(220, 232, 240, 0.99) 48%,
-    rgba(236, 242, 246, 0.99) 100%
-  ) !important;
-  color: #26343f !important;
-  border-color: rgba(58, 79, 95, 0.12) !important;
-}
-
-body.theme-light:has(.modal.mod-community-theme) .titlebar-text {
-  color: #26343f !important;
-  opacity: 0.92 !important;
-}
-
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button svg {
-  color: #435563 !important;
-  stroke: currentColor !important;
-}
-
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button:hover,
-body.theme-light:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon:hover {
-  background-color: rgba(54, 118, 168, 0.09) !important;
-  color: #203746 !important;
-}
-
-body.theme-dark:has(.modal.mod-community-theme) {
-  --titlebar-background: #303943 !important;
-  --titlebar-background-focused: #35404b !important;
-  --titlebar-text-color: #b8c5cf !important;
-  --titlebar-text-color-focused: #eef4f8 !important;
-}
-
-body.theme-dark:has(.modal.mod-community-theme) .titlebar,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-inner,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container.mod-right {
-  background: linear-gradient(
-    90deg,
-    rgba(55, 66, 77, 0.99) 0%,
-    rgba(44, 53, 63, 0.99) 52%,
-    rgba(50, 60, 70, 0.99) 100%
-  ) !important;
-  color: #eef4f8 !important;
-  border-color: rgba(130, 170, 202, 0.12) !important;
-}
-
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-text {
-  color: #e3ecf2 !important;
-  opacity: 0.94 !important;
-}
-
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button svg {
-  color: #c3d0d9 !important;
-  stroke: currentColor !important;
-}
-
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button:hover,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar-button-container .clickable-icon:hover {
-  background-color: rgba(91, 154, 205, 0.14) !important;
-  color: #f3f8fb !important;
-}
-
-body.theme-light:has(.modal.mod-community-theme) .titlebar,
-body.theme-dark:has(.modal.mod-community-theme) .titlebar {
-  border-bottom-width: 1px !important;
-  border-bottom-style: solid !important;
-  box-shadow: 0 1px 8px rgba(15, 24, 32, 0.07) !important;
 }
 
 /* ========================================================================== */
