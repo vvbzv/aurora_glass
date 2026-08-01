@@ -3514,3 +3514,59 @@ body.theme-light .graph-view-container {
 /* ========================================================================== */
 /* END LIGHT GRAPH SOFT CONTRAST                                             */
 /* ========================================================================== */
+
+/* ========================================================================== */
+/* OPAQUE MODALS AND POPOVERS                                                 */
+/* ========================================================================== */
+
+body.theme-light {
+  --opaque-modal-bg: #eef3f6;
+  --opaque-popover-bg: #e7eef3;
+}
+
+body.theme-dark {
+  --opaque-modal-bg: #111b24;
+  --opaque-popover-bg: #14212c;
+}
+
+body.theme-light .modal,
+body.theme-dark .modal,
+body.theme-light .prompt,
+body.theme-dark .prompt,
+body.theme-light .popover,
+body.theme-dark .popover,
+body.theme-light .suggestion,
+body.theme-dark .suggestion,
+body.theme-light .suggestion-container,
+body.theme-dark .suggestion-container,
+body.theme-light .formula-editor .cm-tooltip.cm-tooltip-autocomplete,
+body.theme-dark .formula-editor .cm-tooltip.cm-tooltip-autocomplete {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background-color: var(--opaque-modal-bg) !important;
+  --modal-background: var(--opaque-modal-bg);
+  --settings-background: var(--opaque-modal-bg);
+}
+
+body.theme-light .popover.hover-popover .markdown-preview-view,
+body.theme-dark .popover.hover-popover .markdown-preview-view {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  background-color: var(--opaque-popover-bg) !important;
+}
+
+body.theme-light .modal.mod-settings,
+body.theme-light .modal.mod-community-theme {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+body.theme-dark .modal.mod-settings,
+body.theme-dark .modal.mod-community-theme {
+  background: #0f1821 !important;
+  background-color: #0f1821 !important;
+}
+
+/* ========================================================================== */
+/* END OPAQUE MODALS AND POPOVERS                                             */
+/* ========================================================================== */
