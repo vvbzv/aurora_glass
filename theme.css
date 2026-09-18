@@ -1318,7 +1318,10 @@ body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tru
     center;
 
   filter: blur(var(--background-blur)) saturate(105%);
-  animation: graphite-blue-bg-flow 55s ease-in-out infinite alternate;
+  /* Static by default: animating background-position repaints + re-blurs this
+     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
+     Uncomment to restore the original 55s ambient drift. */
+  /* animation: graphite-blue-bg-flow 55s ease-in-out infinite alternate; */
 }
 
 @keyframes graphite-blue-bg-flow {
@@ -1849,7 +1852,10 @@ body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tr
     center;
 
   filter: blur(var(--background-blur)) saturate(103%);
-  animation: frosted-blue-light-bg-flow 55s ease-in-out infinite alternate;
+  /* Static by default: animating background-position repaints + re-blurs this
+     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
+     Uncomment to restore the original 55s ambient drift. */
+  /* animation: frosted-blue-light-bg-flow 55s ease-in-out infinite alternate; */
 }
 
 @keyframes frosted-blue-light-bg-flow {
