@@ -3560,3 +3560,12 @@ body.theme-dark .workspace-tab-header-container .workspace-tab-header-tab-list:h
   background-color: transparent;
   box-shadow: none;
 }
+
+/* macOS: keep window chrome transparent so .app-container::before (the glass
+   backdrop) shows through titlebar + top corners instead of a flat opaque strip. */
+body.mod-macos.theme-dark,
+body.mod-macos.theme-light {
+  --titlebar-background: transparent;
+  --titlebar-background-focused: transparent;
+  --tab-container-background: transparent;
+}
