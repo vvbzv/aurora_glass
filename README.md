@@ -27,12 +27,14 @@ Repository: https://github.com/OtmiVi/aurora_glass
 Forked from `OtmiVi/aurora_glass` at `353dd68` and maintained here. Two changes on
 top of upstream, both in `theme.css`:
 
-1. **macOS: transparent window chrome.** Obsidian paints `.titlebar`,
+1. **Transparent window chrome (all desktop platforms).** Obsidian paints `.titlebar`,
    `.workspace-ribbon.mod-left::before`, `.titlebar-button-container.mod-right` and
    `.workspace-tabs.mod-top` with `--titlebar-background` / `--tab-container-background`.
-   The opaque values hid `.app-container::before`, so the traffic-light corner and the
-   top-right sidebar toggle stayed a flat patch instead of the gradient. Scoped to
-   `body.mod-macos`; Windows/Linux chrome untouched. Offered upstream as PR #2.
+   The opaque values hid `.app-container::before`, so the traffic-light corner, the
+   top-left ribbon corner and the top-right sidebar toggle stayed flat patches instead
+   of the gradient. Originally scoped to `body.mod-macos`; now also applies to
+   `body.mod-windows` and `body.mod-linux`, which fixes the opaque square above the left
+   ribbon on Windows. Offered upstream as PR #2.
 
 2. **Static background by default.** The default (non-preset) backgrounds ran a 55s
    infinite `alternate` animation on `background-position` across seven layered

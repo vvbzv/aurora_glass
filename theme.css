@@ -3567,10 +3567,16 @@ body.theme-dark .workspace-tab-header-container .workspace-tab-header-tab-list:h
   box-shadow: none;
 }
 
-/* macOS: keep window chrome transparent so .app-container::before (the glass
-   backdrop) shows through titlebar + top corners instead of a flat opaque strip. */
+/* Desktop chrome: keep width-of-ribbon titlebar vars transparent so
+   .app-container::before (the glass backdrop) shows through the titlebar, the
+   top-left ribbon corner (.workspace-ribbon.mod-left:before) and the window
+   controls instead of flat opaque patches. Originally macOS-only. */
 body.mod-macos.theme-dark,
-body.mod-macos.theme-light {
+body.mod-windows.theme-dark,
+body.mod-linux.theme-dark,
+body.mod-macos.theme-light,
+body.mod-windows.theme-light,
+body.mod-linux.theme-light {
   --titlebar-background: transparent;
   --titlebar-background-focused: transparent;
   --tab-container-background: transparent;
