@@ -1,0 +1,5 @@
+
+# local tool state
+.codebase-index/
+.pi/
+.DS_Store
