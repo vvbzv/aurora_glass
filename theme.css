@@ -8,6 +8,12 @@ https://github.com/Oczko24/Obsidian-transparent
 The original project attribution is intentionally preserved.
 Graphite-blue palette, light/dark refinements, tabs, file explorer,
 settings and community-theme-browser styling were customized for this edition.
+
+Modified 2026 by vvbzv (https://github.com/vvbzv/aurora_glass):
+transparent window chrome on macOS/Windows/Linux, default background animation
+disabled, shadowed rules and unreferenced variables removed.
+
+SPDX-License-Identifier: GPL-3.0-only
 */
 
 :root {
@@ -111,7 +117,6 @@ body .h-scroll-handle {
 }
 
 .theme-light {
-  --customaccentcolor: #ffe8d2;
   --brightness: 1.3;
   --kolorboku: #1d1d1f;
 
@@ -134,7 +139,6 @@ body .h-scroll-handle {
 }
 
 .theme-dark {
-  --customaccentcolor: #2e2515;
   --kolorboku: #e2e0dc;
 
   --brightness: 0.5;
@@ -168,18 +172,6 @@ body .h-scroll-handle {
   pointer-events: none;
   transform: translateZ(0);
   backface-visibility: hidden;
-}
-
-body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
-  background-image: linear-gradient(138deg, #18212b 0%, #10171f 52%, #151d26 100%);
-  background-color: #111820;
-  filter: blur(var(--background-blur));
-}
-
-body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
-  background-image: linear-gradient(var(--gradient-angle), var(--gradient-from) 0%, var(--gradient-to) 100%);
-  background-color: unset;
-  filter: blur(var(--background-blur));
 }
 
 body.bg-gradient .app-container::before {
@@ -406,10 +398,6 @@ button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-colla
   color: var(--text-on-accent);
 }
 
-.menu-scroll {
-  display: inline;
-}
-
 .reveal .slide-background-content {
   background-image: none;
   background-color: transparent;
@@ -550,7 +538,7 @@ body.hide-canvas-dots svg.canvas-background {
 
 .canvas-control-item {
   background-color: var(--tr);
-  border-radius: var(--canvas-controls-radius);
+  border-radius: var(--canvas-controls-radius, var(--radius-s));
 }
 
 .canvas-card-menu,
@@ -612,12 +600,12 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .bases-tr {
-  box-shadow: 0 calc(var(--bases-table-row-border-width) * -1) 0 rgba(255, 255, 255, var(--border-opacity));
+  box-shadow: 0 calc(var(--bases-table-row-border-width, var(--border-width)) * -1) 0 rgba(255, 255, 255, var(--border-opacity));
 
 }
 
 .bases-td {
-  box-shadow: calc(var(--bases-table-column-border-width) * -1) 0 0 rgba(255, 255, 255, var(--border-opacity));
+  box-shadow: calc(var(--bases-table-column-border-width, var(--border-width)) * -1) 0 0 rgba(255, 255, 255, var(--border-opacity));
 }
 
 .bases-header {
@@ -845,10 +833,6 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
 }
 
 .sync-status-icon.mod-error {
-  color: #dadada90;
-}
-
-body.default-sync-error .sync-status-icon.mod-error {
   color: var(--text-error);
 }
 
@@ -966,23 +950,6 @@ body.animate-note-open:not(.enchanted-animations-present) .workspace-leaf.mod-ac
   animation: tr-note-fade-in var(--anim-duration-moderate) var(--ease-out-smooth);
 }
 
-body.no-animation *,
-body.no-animation *::before,
-body.no-animation *::after {
-  transition-duration: 0s;
-  animation-duration: 0s;
-}
-
-body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-present)::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  background-color: var(--background-primary);
-  animation: splashFade 2.5s ease forwards;
-}
-
 body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-present) .workspace {
   animation: vaultReveal 1.2s ease 1.2s backwards;
 }
@@ -996,21 +963,6 @@ body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-pr
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes splashFade {
-  0% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
   }
 }
 
@@ -1245,129 +1197,9 @@ body.theme-dark {
   --custom-glass-border: rgba(135, 185, 225, 0.085);
   --custom-glass-border-strong: rgba(145, 195, 235, 0.13);
   --custom-glass-divider: rgba(120, 170, 215, 0.065);
-  --custom-blue-accent: rgba(92, 158, 215, 0.68);
-  --custom-blue-glow: rgba(55, 120, 180, 0.16);
-
   --fakeblur: #111820;
   --overlay-color: rgba(10, 17, 24, 0.78);
   --background-primary-alt: #17212b;
-}
-
-body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
-  background-image:
-    radial-gradient(
-      ellipse 58% 45% at 10% 12%,
-      rgba(42, 102, 170, 0.17) 0%,
-      rgba(30, 70, 118, 0.075) 32%,
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 50% 62% at 90% 18%,
-      rgba(30, 110, 165, 0.145) 0%,
-      rgba(25, 72, 108, 0.06) 36%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 45% 58% at 55% 52%,
-      rgba(50, 92, 145, 0.10) 0%,
-      rgba(30, 60, 95, 0.04) 40%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 58% 40% at 12% 92%,
-      rgba(24, 80, 128, 0.115) 0%,
-      rgba(18, 50, 82, 0.04) 40%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 50% 45% at 88% 88%,
-      rgba(48, 96, 150, 0.115) 0%,
-      rgba(30, 60, 94, 0.04) 40%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 30% 25% at 67% 12%,
-      rgba(75, 138, 195, 0.055) 0%,
-      transparent 65%
-    ),
-    linear-gradient(
-      135deg,
-      #15191f 0%,
-      #0f141a 48%,
-      #141a20 100%
-    );
-
-  background-color: #10151b;
-
-  background-size:
-    150% 150%,
-    155% 155%,
-    165% 165%,
-    160% 160%,
-    150% 150%,
-    130% 130%,
-    100% 100%;
-
-  background-position:
-    0% 0%,
-    100% 0%,
-    50% 50%,
-    0% 100%,
-    100% 100%,
-    70% 10%,
-    center;
-
-  filter: blur(var(--background-blur)) saturate(105%);
-  /* Static by default: animating background-position repaints + re-blurs this
-     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
-     Uncomment to restore the original 55s ambient drift. */
-  /* animation: graphite-blue-bg-flow 55s ease-in-out infinite alternate; */
-}
-
-@keyframes graphite-blue-bg-flow {
-  0% {
-    background-position:
-      0% 0%,
-      100% 0%,
-      50% 45%,
-      0% 100%,
-      100% 100%,
-      70% 10%,
-      center;
-  }
-
-  33% {
-    background-position:
-      18% 14%,
-      82% 24%,
-      42% 60%,
-      15% 80%,
-      88% 72%,
-      55% 20%,
-      center;
-  }
-
-  66% {
-    background-position:
-      28% 35%,
-      72% 8%,
-      65% 40%,
-      3% 68%,
-      75% 94%,
-      78% 28%,
-      center;
-  }
-
-  100% {
-    background-position:
-      8% 46%,
-      94% 30%,
-      38% 38%,
-      22% 95%,
-      92% 62%,
-      60% 8%,
-      center;
-  }
 }
 
 body.theme-dark .workspace-split.mod-left-split {
@@ -1427,28 +1259,12 @@ body.theme-dark .nav-folder-title:hover {
   background-color: rgba(72, 130, 182, 0.035);
 }
 
-body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active {
-  background: linear-gradient(
-    180deg,
-    rgba(57, 118, 178, 0.105),
-    rgba(35, 66, 94, 0.03)
-  );
-  box-shadow:
-    inset 0 -2px 0 rgba(95, 165, 222, 0.68),
-    inset 0 1px 0 rgba(255, 255, 255, 0.018);
-  border-radius: 0;
-}
-
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
   color: rgba(242, 248, 253, 0.98);
 }
 
 body.theme-dark .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
   color: rgba(125, 188, 235, 0.96);
-}
-
-body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
-  opacity: 0.76;
 }
 
 body.theme-dark .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover {
@@ -1476,9 +1292,9 @@ body.theme-dark .suggestion-item:hover {
 }
 
 body.theme-dark .modal-container .modal.mod-settings {
-  background-color: rgba(11, 18, 25, 0.86);
-  --settings-background: rgba(11, 18, 25, 0.86);
-  --modal-background: rgba(11, 18, 25, 0.86);
+  background-color: #0f1821;
+  --settings-background: #0f1821;
+  --modal-background: #0f1821;
   border-color: rgba(125, 180, 225, 0.14);
   box-shadow:
     0 24px 80px rgba(0, 0, 0, 0.40),
@@ -1777,9 +1593,6 @@ body.theme-light {
   --custom-glass-border: rgba(65, 121, 164, 0.12);
   --custom-glass-border-strong: rgba(55, 113, 158, 0.17);
   --custom-glass-divider: rgba(74, 127, 168, 0.09);
-  --custom-blue-accent: rgba(44, 123, 183, 0.70);
-  --custom-blue-glow: rgba(55, 130, 190, 0.11);
-
   --fakeblur: #edf4f8;
   --overlay-color: rgba(245, 249, 252, 0.82);
   --background-primary-alt: #e8f1f7;
@@ -1792,112 +1605,6 @@ body.theme-light {
 
 body.theme-light .workspace {
   --icon-color: #31485a;
-}
-
-body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
-  background-image:
-    radial-gradient(
-      ellipse 58% 45% at 10% 12%,
-      rgba(85, 160, 218, 0.18) 0%,
-      rgba(112, 177, 221, 0.08) 34%,
-      transparent 68%
-    ),
-    radial-gradient(
-      ellipse 50% 62% at 90% 18%,
-      rgba(82, 174, 214, 0.15) 0%,
-      rgba(116, 187, 220, 0.065) 36%,
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 45% 58% at 55% 52%,
-      rgba(100, 151, 205, 0.105) 0%,
-      rgba(132, 177, 215, 0.04) 40%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 58% 40% at 12% 92%,
-      rgba(90, 160, 207, 0.11) 0%,
-      rgba(122, 177, 214, 0.04) 40%,
-      transparent 72%
-    ),
-    radial-gradient(
-      ellipse 50% 45% at 88% 88%,
-      rgba(105, 160, 211, 0.11) 0%,
-      rgba(128, 174, 211, 0.04) 40%,
-      transparent 72%
-    ),
-    linear-gradient(
-      135deg,
-      #f7fafc 0%,
-      #eef4f8 48%,
-      #f5f8fa 100%
-    );
-
-  background-color: #f2f7fa;
-
-  background-size:
-    150% 150%,
-    155% 155%,
-    165% 165%,
-    160% 160%,
-    150% 150%,
-    100% 100%;
-
-  background-position:
-    0% 0%,
-    100% 0%,
-    50% 50%,
-    0% 100%,
-    100% 100%,
-    center;
-
-  filter: blur(var(--background-blur)) saturate(103%);
-  /* Static by default: animating background-position repaints + re-blurs this
-     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
-     Uncomment to restore the original 55s ambient drift. */
-  /* animation: frosted-blue-light-bg-flow 55s ease-in-out infinite alternate; */
-}
-
-@keyframes frosted-blue-light-bg-flow {
-  0% {
-    background-position:
-      0% 0%,
-      100% 0%,
-      50% 45%,
-      0% 100%,
-      100% 100%,
-      center;
-  }
-
-  33% {
-    background-position:
-      18% 14%,
-      82% 24%,
-      42% 60%,
-      15% 80%,
-      88% 72%,
-      center;
-  }
-
-  66% {
-    background-position:
-      28% 35%,
-      72% 8%,
-      65% 40%,
-      3% 68%,
-      75% 94%,
-      center;
-  }
-
-  100% {
-    background-position:
-      8% 46%,
-      94% 30%,
-      38% 38%,
-      22% 95%,
-      92% 62%,
-      center;
-  }
 }
 
 body.theme-light .workspace-split.mod-left-split {
@@ -1921,11 +1628,6 @@ body.theme-light .workspace-split.mod-right-split .nav-header {
 
 body.theme-light .workspace-sidedock-vault-profile {
   border-top: 1px solid rgba(68, 124, 168, 0.08);
-}
-
-body.theme-light .workspace-split.mod-root > .workspace-tabs > .workspace-tab-header-container {
-  border-bottom: 1px solid rgba(68, 124, 168, 0.10);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.50);
 }
 
 body.theme-light .titlebar {
@@ -1955,30 +1657,6 @@ body.theme-light .nav-file-title:hover {
 
 body.theme-light .nav-folder-title:hover {
   background-color: rgba(65, 137, 190, 0.045);
-}
-
-body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
-  background: linear-gradient(
-    180deg,
-    rgba(72, 147, 202, 0.115),
-    rgba(90, 153, 196, 0.035)
-  );
-  box-shadow:
-    inset 0 -2px 0 rgba(45, 128, 190, 0.68),
-    inset 0 1px 0 rgba(255, 255, 255, 0.62);
-  border-radius: 0;
-}
-
-body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
-  color: #17384f;
-}
-
-body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-icon {
-  color: hsl(205, 66%, 42%);
-}
-
-body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active) {
-  opacity: 0.72;
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header:not(.is-active):hover {
@@ -2013,15 +1691,6 @@ body.theme-light .modal-container .modal.mod-settings {
   box-shadow:
     0 24px 80px rgba(52, 83, 104, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.76);
-}
-
-body.theme-light .modal.mod-settings .vertical-tab-header {
-  background: linear-gradient(
-    180deg,
-    rgba(232, 242, 249, 0.88),
-    rgba(242, 248, 251, 0.82)
-  );
-  border-right: 1px solid rgba(68, 124, 168, 0.11);
 }
 
 body.theme-light .modal-container .modal.mod-settings .vertical-tab-content,
@@ -2268,6 +1937,10 @@ body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tru
   background-size: 145% 145%, 150% 150%, 155% 155%, 100% 100%;
   background-position: 0% 0%, 100% 10%, 70% 100%, center;
   filter: blur(var(--background-blur)) saturate(110%);
+  /* Static by default: animating background-position repaints + re-blurs this
+     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
+     Uncomment to restore the original 55s ambient drift. */
+  /* animation: graphite-blue-bg-flow 55s ease-in-out infinite alternate; */
 }
 
 body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
@@ -2302,6 +1975,10 @@ body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tr
   background-size: 150% 150%, 155% 155%, 160% 160%, 100% 100%;
   background-position: 0% 0%, 100% 8%, 68% 100%, center;
   filter: blur(var(--background-blur)) saturate(104%);
+  /* Static by default: animating background-position repaints + re-blurs this
+     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
+     Uncomment to restore the original 55s ambient drift. */
+  /* animation: frosted-blue-light-bg-flow 55s ease-in-out infinite alternate; */
 }
 
 @keyframes graphite-blue-bg-flow {
@@ -2430,16 +2107,6 @@ body.theme-light .workspace-tab-header-tab-list:hover,
 body.theme-light .workspace-tab-header-new-tab:hover {
   background-color: rgba(55, 133, 190, 0.09);
   color: #176ca8;
-}
-
-body.theme-light .workspace-tab-header.is-active,
-body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active {
-  background: linear-gradient(
-    180deg,
-    rgba(223, 239, 250, 0.58),
-    rgba(239, 247, 252, 0.36)
-  );
-  box-shadow: inset 0 -2px 0 rgba(45, 128, 190, 0.68);
 }
 
 body.theme-light .workspace-split.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
@@ -2992,15 +2659,11 @@ body.theme-light {
   --aurora-nav-file-bg: rgba(255, 255, 255, 0.22);
   --aurora-nav-file-hover: rgba(65, 137, 190, 0.08);
   --aurora-nav-file-icon: rgba(55, 125, 177, 0.30);
-  --aurora-nav-file-icon-active: rgba(45, 128, 190, 0.72);
   --aurora-nav-file-fold: rgba(255, 255, 255, 0.70);
-  --aurora-nav-folder-bg: rgba(255, 255, 255, 0.16);
   --aurora-nav-folder-hover: rgba(60, 134, 190, 0.10);
-  --aurora-nav-folder-open-bg: rgba(62, 137, 194, 0.12);
   --aurora-nav-folder-icon: rgba(80, 151, 202, 0.54);
   --aurora-nav-folder-tab: rgba(162, 216, 239, 0.78);
   --aurora-nav-guide: rgba(58, 112, 153, 0.14);
-  --aurora-nav-text: #344653;
   --aurora-nav-muted: #657481;
   --aurora-nav-active-text: #17384f;
   --aurora-type-markdown: rgba(64, 139, 198, 0.66);
@@ -3017,15 +2680,11 @@ body.theme-dark {
   --aurora-nav-file-bg: rgba(16, 27, 38, 0.24);
   --aurora-nav-file-hover: rgba(72, 130, 182, 0.07);
   --aurora-nav-file-icon: rgba(102, 172, 225, 0.34);
-  --aurora-nav-file-icon-active: rgba(96, 166, 224, 0.76);
   --aurora-nav-file-fold: rgba(217, 238, 252, 0.24);
-  --aurora-nav-folder-bg: rgba(18, 31, 43, 0.22);
   --aurora-nav-folder-hover: rgba(79, 143, 195, 0.09);
-  --aurora-nav-folder-open-bg: rgba(82, 146, 198, 0.11);
   --aurora-nav-folder-icon: rgba(92, 164, 218, 0.46);
   --aurora-nav-folder-tab: rgba(145, 211, 239, 0.54);
   --aurora-nav-guide: rgba(116, 172, 216, 0.13);
-  --aurora-nav-text: rgba(224, 237, 247, 0.88);
   --aurora-nav-muted: rgba(169, 190, 207, 0.72);
   --aurora-nav-active-text: rgba(241, 248, 253, 0.97);
   --aurora-type-markdown: rgba(110, 184, 239, 0.70);
@@ -3223,11 +2882,6 @@ body.theme-light {
   --tab-radius: 0;
   --tab-radius-active: 0;
   --tab-curve: 0;
-  --aurora-tab-gradient: linear-gradient(
-    180deg,
-    rgba(236, 246, 251, 0.98) 0%,
-    rgba(214, 233, 245, 0.95) 100%
-  );
   --aurora-tab-border: rgba(67, 128, 173, 0.18);
   --aurora-tab-border-active: rgba(42, 132, 198, 0.82);
   --aurora-tab-active-bg: rgba(255, 255, 255, 0.24);
@@ -3246,11 +2900,6 @@ body.theme-dark {
   --tab-radius: 0;
   --tab-radius-active: 0;
   --tab-curve: 0;
-  --aurora-tab-gradient: linear-gradient(
-    180deg,
-    rgba(24, 37, 49, 0.98) 0%,
-    rgba(13, 23, 32, 0.96) 100%
-  );
   --aurora-tab-border: rgba(120, 170, 215, 0.14);
   --aurora-tab-border-active: rgba(95, 165, 222, 0.78);
   --aurora-tab-active-bg: rgba(95, 165, 222, 0.10);
@@ -3282,20 +2931,6 @@ body.theme-light .workspace-tab-header,
 body.theme-dark .workspace-tab-header {
   opacity: 1;
   border-radius: 0;
-}
-
-body.theme-light .workspace-tab-header.is-active {
-  background-color: var(--tab-background-active);
-  box-shadow:
-    inset 0 -2px 0 rgba(45, 128, 190, 0.72),
-    inset 0 1px 0 rgba(255, 255, 255, 0.62);
-}
-
-body.theme-dark .workspace-tab-header.is-active {
-  background-color: var(--tab-background-active);
-  box-shadow:
-    inset 0 -2px 0 rgba(95, 165, 222, 0.72),
-    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 body.theme-light {
@@ -3580,4 +3215,24 @@ body.mod-linux.theme-light {
   --titlebar-background: transparent;
   --titlebar-background-focused: transparent;
   --tab-container-background: transparent;
+}
+
+/* Kill switch. Must stay last: any later animation/transition shorthand resets
+   these longhands. */
+body.no-animation *,
+body.no-animation *::before,
+body.no-animation *::after {
+  transition-duration: 0s;
+  animation-duration: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* !important: OS setting must beat every animation shorthand in this file. */
+  body *,
+  body *::before,
+  body *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

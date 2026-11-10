@@ -2,46 +2,55 @@
 
 ![Aurora Glass preview](screenshot.png)
 
-Aurora Glass is a graphite-blue glass theme for Obsidian, customized on top of
-Oczko24's Obsidian Transparent theme.
+A graphite-blue glass theme for Obsidian, forked from
+[OtmiVi/aurora_glass](https://github.com/OtmiVi/aurora_glass), which in turn is
+customized from [Oczko24's Obsidian Transparent](https://github.com/Oczko24/Obsidian-transparent).
 
-Repository: https://github.com/OtmiVi/aurora_glass
+This fork keeps that look but removes a background animation that pushed an M2 to
+~90% GPU while idle, and drops CSS that never reached the screen.
+
+## Install
+
+The community-theme browser entry for "Aurora Glass" still points at upstream, so
+installing from the browser installs the upstream build, not this one.
+
+Manual install:
+
+1. Download `theme.css` and `manifest.json` from this repository.
+2. Put both files in `<vault>/.obsidian/themes/Aurora Glass/`.
+3. Reload Obsidian and pick **Aurora Glass** under Settings → Appearance.
+
+An official theme update will overwrite this folder. Re-copy the two files after
+one, or install under a different folder name.
 
 ## Highlights
 
 - Dark and light graphite-blue glass palettes.
-- Transparent, gradient, solid-color, and custom-image background modes.
-- Tuned settings modal, community theme browser, tabs, file explorer, graph,
-  canvas, callouts, code blocks, marks, and inline code.
-- Compatibility fixes for Make.md, MySnippets, Day Planner,
-  Remotely Save, Notebook Navigator, and Enchanted Animations.
+- Transparent, gradient, solid-colour and custom-image backgrounds. These are
+  opt-in body classes (`bg-gradient`, `bg-solid`, `bg-custom`,
+  `preset-true-glass`, `preset-orange`); the theme ships no Style Settings
+  panel, so add the class with a CSS snippet or a plugin that can set body classes.
+- Tuned settings modal, community theme browser, tabs, file explorer, canvas,
+  code blocks, marks and inline code.
+- Partial compatibility for Make.md, Notebook Navigator and Enchanted Animations.
 
-## Install
+## Fork changes (vvbzv)
 
-1. In Obsidian, open `Settings -> Appearance -> Themes`.
-2. Click `Manage`, search for `Aurora Glass`, then click `Install and use`.
-3. If it is already installed, select `Aurora Glass` from the theme dropdown.
+1. **Transparent window chrome on all desktop platforms.** `.titlebar`,
+   `.workspace-ribbon.mod-left::before`, `.titlebar-button-container.mod-right`
+   and `.workspace-tabs.mod-top` read `--titlebar-background` /
+   `--tab-container-background`; the opaque values hid the gradient in the
+   traffic-light corner and left a flat square above the left ribbon on Windows.
+   The macOS part is offered upstream as
+   [PR #2](https://github.com/OtmiVi/aurora_glass/pull/2) (open); the
+   Windows and Linux selectors are fork-only.
 
-## Fork notes (vvbzv)
-
-Forked from `OtmiVi/aurora_glass` at `353dd68` and maintained here. Two changes on
-top of upstream, both in `theme.css`:
-
-1. **Transparent window chrome (all desktop platforms).** Obsidian paints `.titlebar`,
-   `.workspace-ribbon.mod-left::before`, `.titlebar-button-container.mod-right` and
-   `.workspace-tabs.mod-top` with `--titlebar-background` / `--tab-container-background`.
-   The opaque values hid `.app-container::before`, so the traffic-light corner, the
-   top-left ribbon corner and the top-right sidebar toggle stayed flat patches instead
-   of the gradient. Originally scoped to `body.mod-macos`; now also applies to
-   `body.mod-windows` and `body.mod-linux`, which fixes the opaque square above the left
-   ribbon on Windows. Offered upstream as PR #2.
-
-2. **Static background by default.** The default (non-preset) backgrounds ran a 55s
-   infinite `alternate` animation on `background-position` across seven layered
-   gradients, on a fixed pseudo-element inset by `-2 * background-blur` (80px) and
-   carrying `filter: blur(80px) saturate()`. `background-position` is not
-   compositable, so that layer was repainted and re-blurred every rendered frame.
-   GPU Device Utilization on an M2, Obsidian 1.13.6, idle window, 6 samples:
+2. **Static background by default.** The default backgrounds ran a 55s infinite
+   `alternate` animation on `background-position` across a fixed pseudo-element
+   inset by `-2 * background-blur` (80px) and carrying
+   `filter: blur(80px) saturate()`. `background-position` is not compositable,
+   so that layer was repainted and re-blurred every frame. GPU Device Utilization
+   on an M2, Obsidian 1.13.6, idle window, 6 samples:
 
    | config | avg | max |
    | --- | --- | --- |
@@ -50,15 +59,22 @@ top of upstream, both in `theme.css`:
    | upstream Aurora Glass | **90%** | 92% |
    | this fork | **29%** | 34% |
 
-   The two `animation` lines are commented out, not deleted — uncomment for the
-   ambient drift. Transform-based keyframes were measured at 74%, so the drift is off
-   rather than rewritten.
+   The two `animation` lines are commented out, not deleted; uncomment them in
+   both background rules for the ambient drift. Transform-based keyframes measured
+   74%, so the drift is off rather than rewritten. Windows and Linux were not
+   measured; the change there is visual only.
 
-Both changes revert by editing that one file.
+3. **Dead CSS removed.** Three shadowed generations of the default background,
+   two dead tab systems, duplicate keyframes and theme-private variables no rule
+   read are gone (345 lines, 7.5 KB of 108.5 KB). Every removal was checked for cascade
+   equivalence: the effective declaration set for each selector is unchanged.
+   Fixed along the way: `.menu-scroll` no longer breaks long-menu scrolling, the
+   splash overlay no longer paints a transparent layer, the sync error icon uses
+   `--text-error`, the `no-animation` kill switch now actually applies, dark
+   settings are opaque like light, and `prefers-reduced-motion` is honoured.
 
-## Credits
+## License
 
-Based on Obsidian Transparent by Oczko24:
-https://github.com/Oczko24/Obsidian-transparent
-
-Customized and assembled by OtmiVi.
+GPL-3.0-only, inherited from Obsidian Transparent. See [LICENSE](LICENSE).
+Upstream and original authors retain copyright; this fork's modifications are
+marked in the header of `theme.css`.
