@@ -13,8 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Guard tag against manifest.json version
+        run: |
+          version="$(python3 -c 'import json; print(json.load(open("manifest.json"))["version"])')"
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "::error::tag $GITHUB_REF_NAME != manifest.json version $version"
+            exit 1
+          fi
       - uses: softprops/action-gh-release@v2
         with:
           files: |
             manifest.json
             theme.css
+            versions.json
