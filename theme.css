@@ -8,6 +8,12 @@ https://github.com/Oczko24/Obsidian-transparent
 The original project attribution is intentionally preserved.
 Graphite-blue palette, light/dark refinements, tabs, file explorer,
 settings and community-theme-browser styling were customized for this edition.
+
+Modified 2026 by vvbzv (https://github.com/vvbzv/aurora_glass):
+transparent window chrome on macOS/Windows/Linux, default background animation
+disabled, shadowed rules and unreferenced variables removed.
+
+SPDX-License-Identifier: GPL-3.0-only
 */
 
 :root {
@@ -532,7 +538,7 @@ body.hide-canvas-dots svg.canvas-background {
 
 .canvas-control-item {
   background-color: var(--tr);
-  border-radius: var(--canvas-controls-radius);
+  border-radius: var(--canvas-controls-radius, var(--radius-s));
 }
 
 .canvas-card-menu,
@@ -594,12 +600,12 @@ body.hide-canvas-dots svg.canvas-background {
 }
 
 .bases-tr {
-  box-shadow: 0 calc(var(--bases-table-row-border-width) * -1) 0 rgba(255, 255, 255, var(--border-opacity));
+  box-shadow: 0 calc(var(--bases-table-row-border-width, var(--border-width)) * -1) 0 rgba(255, 255, 255, var(--border-opacity));
 
 }
 
 .bases-td {
-  box-shadow: calc(var(--bases-table-column-border-width) * -1) 0 0 rgba(255, 255, 255, var(--border-opacity));
+  box-shadow: calc(var(--bases-table-column-border-width, var(--border-width)) * -1) 0 0 rgba(255, 255, 255, var(--border-opacity));
 }
 
 .bases-header {
