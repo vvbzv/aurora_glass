@@ -68,6 +68,20 @@ body.preset-orange svg.canvas-background {
   display: none;
 }
 
+/* Escape hatch for users whose GPU still struggles. */
+body.no-backdrop,
+body.no-backdrop * {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Opaque per-theme background: text contrast stops depending on the wallpaper. */
+body.solid-safe {
+  --background-primary: var(--fakeblur);
+  --background-secondary: var(--fakeblur);
+  --background-primary-alt: var(--fakeblur);
+}
+
 body {
   --background-primary: var(--tr);
   --background-secondary: var(--tr);
@@ -1938,9 +1952,7 @@ body.theme-dark:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tru
   background-position: 0% 0%, 100% 10%, 70% 100%, center;
   filter: blur(var(--background-blur)) saturate(110%);
   /* Static by default: animating background-position repaints + re-blurs this
-     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
-     Uncomment to restore the original 55s ambient drift. */
-  /* animation: graphite-blue-bg-flow 55s ease-in-out infinite alternate; */
+     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2). */
 }
 
 body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-true-glass) .app-container::before {
@@ -1976,39 +1988,7 @@ body.theme-light:not(.bg-gradient):not(.bg-solid):not(.bg-custom):not(.preset-tr
   background-position: 0% 0%, 100% 8%, 68% 100%, center;
   filter: blur(var(--background-blur)) saturate(104%);
   /* Static by default: animating background-position repaints + re-blurs this
-     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2).
-     Uncomment to restore the original 55s ambient drift. */
-  /* animation: frosted-blue-light-bg-flow 55s ease-in-out infinite alternate; */
-}
-
-@keyframes graphite-blue-bg-flow {
-  0% {
-    background-position: 0% 0%, 100% 10%, 70% 100%, center;
-  }
-  33% {
-    background-position: 18% 14%, 82% 24%, 56% 78%, center;
-  }
-  66% {
-    background-position: 28% 35%, 72% 8%, 78% 88%, center;
-  }
-  100% {
-    background-position: 8% 46%, 94% 30%, 58% 96%, center;
-  }
-}
-
-@keyframes frosted-blue-light-bg-flow {
-  0% {
-    background-position: 0% 0%, 100% 8%, 68% 100%, center;
-  }
-  33% {
-    background-position: 18% 14%, 82% 24%, 54% 80%, center;
-  }
-  66% {
-    background-position: 28% 35%, 72% 8%, 76% 88%, center;
-  }
-  100% {
-    background-position: 8% 46%, 94% 30%, 58% 96%, center;
-  }
+     viewport-sized layer every rendered frame (~90% GPU vs ~34% idle, M2). */
 }
 
 body.theme-light .workspace,
