@@ -1600,16 +1600,10 @@ body.theme-light {
   --text-on-accent: #f8fbfd;
 
   --kolorboku: #273746;
-  --tr06: rgba(238, 246, 251, 0.72);
-  --interactive-normal: rgba(237, 245, 250, 0.72);
-  --interactive-hover: rgba(228, 240, 248, 0.88);
 
   --custom-glass-border: rgba(65, 121, 164, 0.12);
   --custom-glass-border-strong: rgba(55, 113, 158, 0.17);
   --custom-glass-divider: rgba(74, 127, 168, 0.09);
-  --fakeblur: #edf4f8;
-  --overlay-color: rgba(245, 249, 252, 0.82);
-  --background-primary-alt: #e8f1f7;
   --background-modifier-border-focus: rgba(54, 118, 168, 0.20);
 
   --input-shadow-hover:
