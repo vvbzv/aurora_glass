@@ -23,6 +23,8 @@ Manual install:
 An official theme update will overwrite this folder. Re-copy the two files after
 one, or install under a different folder name.
 
+Each release ships `manifest.json`, `theme.css` and `versions.json`.
+
 ## Highlights
 
 - Dark and light graphite-blue glass palettes.
@@ -33,6 +35,12 @@ one, or install under a different folder name.
 - Tuned settings modal, community theme browser, tabs, file explorer, canvas,
   code blocks, marks and inline code.
 - Partial compatibility for Make.md, Notebook Navigator and Enchanted Animations.
+
+## Known limits
+
+`--background-primary` is `#00000000`, fully transparent, so text contrast
+depends on the user's background image. The `.solid-safe` body class is an
+opt-in way to get a solid background instead.
 
 ## Fork changes (vvbzv)
 
