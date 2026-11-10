@@ -66,11 +66,12 @@ one, or install under a different folder name.
 
 3. **Dead CSS removed.** Three shadowed generations of the default background,
    two dead tab systems, duplicate keyframes and theme-private variables no rule
-   read are gone (362 lines, 7.8 KB of 108.5 KB). Every removal was checked for cascade
+   read are gone (345 lines, 7.5 KB of 108.5 KB). Every removal was checked for cascade
    equivalence: the effective declaration set for each selector is unchanged.
    Fixed along the way: `.menu-scroll` no longer breaks long-menu scrolling, the
    splash overlay no longer paints a transparent layer, the sync error icon uses
-   `--text-error`, and the `no-animation` kill switch now actually applies.
+   `--text-error`, the `no-animation` kill switch now actually applies, dark
+   settings are opaque like light, and `prefers-reduced-motion` is honoured.
 
 ## License
 

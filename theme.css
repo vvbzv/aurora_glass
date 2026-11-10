@@ -1292,9 +1292,9 @@ body.theme-dark .suggestion-item:hover {
 }
 
 body.theme-dark .modal-container .modal.mod-settings {
-  background-color: rgba(11, 18, 25, 0.86);
-  --settings-background: rgba(11, 18, 25, 0.86);
-  --modal-background: rgba(11, 18, 25, 0.86);
+  background-color: #0f1821;
+  --settings-background: #0f1821;
+  --modal-background: #0f1821;
   border-color: rgba(125, 180, 225, 0.14);
   box-shadow:
     0 24px 80px rgba(0, 0, 0, 0.40),
@@ -3224,4 +3224,15 @@ body.no-animation *::before,
 body.no-animation *::after {
   transition-duration: 0s;
   animation-duration: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* !important: OS setting must beat every animation shorthand in this file. */
+  body *,
+  body *::before,
+  body *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
