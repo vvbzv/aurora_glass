@@ -392,10 +392,6 @@ button:not(.clickable-icon):not(.nn-icon-button):not(.nn-list-group-header-colla
   color: var(--text-on-accent);
 }
 
-.menu-scroll {
-  display: inline;
-}
-
 .reveal .slide-background-content {
   background-image: none;
   background-color: transparent;
@@ -831,10 +827,6 @@ body.is-mobile.disable-drawer-dimming .workspace-drawer-inner {
 }
 
 .sync-status-icon.mod-error {
-  color: #dadada90;
-}
-
-body.default-sync-error .sync-status-icon.mod-error {
   color: var(--text-error);
 }
 
@@ -952,23 +944,6 @@ body.animate-note-open:not(.enchanted-animations-present) .workspace-leaf.mod-ac
   animation: tr-note-fade-in var(--anim-duration-moderate) var(--ease-out-smooth);
 }
 
-body.no-animation *,
-body.no-animation *::before,
-body.no-animation *::after {
-  transition-duration: 0s;
-  animation-duration: 0s;
-}
-
-body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-present)::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  background-color: var(--background-primary);
-  animation: splashFade 2.5s ease forwards;
-}
-
 body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-present) .workspace {
   animation: vaultReveal 1.2s ease 1.2s backwards;
 }
@@ -982,21 +957,6 @@ body:not(.disable-splash-screen):not(.no-animation):not(.enchanted-animations-pr
   to {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-@keyframes splashFade {
-  0% {
-    opacity: 1;
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-    visibility: hidden;
   }
 }
 
@@ -3249,4 +3209,13 @@ body.mod-linux.theme-light {
   --titlebar-background: transparent;
   --titlebar-background-focused: transparent;
   --tab-container-background: transparent;
+}
+
+/* Kill switch. Must stay last: any later animation/transition shorthand resets
+   these longhands. */
+body.no-animation *,
+body.no-animation *::before,
+body.no-animation *::after {
+  transition-duration: 0s;
+  animation-duration: 0s;
 }
