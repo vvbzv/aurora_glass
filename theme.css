@@ -75,6 +75,12 @@ body.no-backdrop * {
   backdrop-filter: none !important;
 }
 
+body.no-backdrop .notice,
+body.no-backdrop .mobile-toolbar-options-list,
+body.no-backdrop .status-bar {
+  background-color: var(--fakeblur);
+}
+
 /* Opaque per-theme background: text contrast stops depending on the wallpaper. */
 body.solid-safe {
   --background-primary: var(--fakeblur);
@@ -225,7 +231,6 @@ body.preset-true-glass .app-container::before,
 body.theme-light.preset-true-glass .app-container::before,
 body.theme-dark.preset-true-glass .app-container::before {
   background-image: none;
-  filter: blur(var(--background-blur));
   -webkit-backdrop-filter: blur(var(--background-blur));
   backdrop-filter: blur(var(--background-blur));
 }
@@ -770,7 +775,6 @@ body.show-scrollbars ::-webkit-scrollbar-thumb {
     opacity var(--anim-duration-moderate) var(--ease-out-smooth),
     margin-bottom var(--anim-duration-moderate) var(--ease-out-smooth),
     transform var(--anim-duration-moderate) var(--ease-out-smooth);
-  will-change: transform, opacity;
   backface-visibility: hidden;
 }
 
@@ -778,7 +782,6 @@ body.show-scrollbars ::-webkit-scrollbar-thumb {
   transition:
     opacity var(--anim-duration-moderate) var(--ease-out-smooth),
     transform var(--anim-duration-moderate) var(--ease-out-smooth);
-  will-change: transform, opacity;
   backface-visibility: hidden;
 }
 
@@ -1052,7 +1055,6 @@ body:not(.disable-formatting-animations):not(.enchanted-animations-present) .mar
   line-height: 0;
   padding-block: 0;
 
-  will-change: transform, opacity;
   backface-visibility: hidden;
   animation: premiumHorizontalPush 0.3s cubic-bezier(0.25, 1, 0.5, 1.05) forwards;
 }
@@ -3191,13 +3193,11 @@ body.mod-linux.theme-light {
   --tab-container-background: transparent;
 }
 
-/* Kill switch. Must stay last: any later animation/transition shorthand resets
-   these longhands. */
 body.no-animation *,
 body.no-animation *::before,
 body.no-animation *::after {
-  transition-duration: 0s;
-  animation-duration: 0s;
+  animation: none !important;
+  transition: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3207,6 +3207,7 @@ body.no-animation *::after {
   body *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
   }
 }
